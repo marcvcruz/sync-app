@@ -45,6 +45,8 @@ group :development, :test do
 
   # RSpec for unit testing
   gem 'rspec-rails'
+
+  gem 'pry'
 end
 
 group :production do
