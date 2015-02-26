@@ -14,7 +14,6 @@ RSpec.describe User, type: :model do
 
   it 'created from valid attributes is valid' do
     expect(user.valid?).to be true
-    puts user.errors.messages
   end
 
   describe 'first name' do
