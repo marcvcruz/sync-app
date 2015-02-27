@@ -20,4 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: Hello world
+  sign_in: Sign in
+  sign_out: Sign out
+  username: Username
+  password: Password
+  incorrect_username_password: The username or password you entered is invalid.
