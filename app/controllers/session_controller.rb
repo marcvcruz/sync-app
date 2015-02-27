@@ -3,8 +3,9 @@ class SessionController < ApplicationController
   end
 
   def create
-    user = User.find_by username: params[:session][:username]
+    user = User.find_by username: params[:session][:username].underscore
     if user and user.authenticate(params[:session][:password])
+      #login_user(user)
       redirect_to :root and return
     end
 
