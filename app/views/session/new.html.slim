@@ -1,0 +1,27 @@
+.container
+  #loginbox.mainbox.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
+    .panel.panel-info
+      .panel-heading
+        .panel-title =t(:sign_in)
+      .panel-body
+
+        -if flash[:alert]
+          #login-alert.alert.alert-danger.col-sm-12
+            =flash[:alert]
+
+        =form_for :session, html: { id:'loginform', url: sign_in_path, class:'form-horizontal', role: 'form' } do |form|
+          .input-group
+            span.input-group-addon
+              i.glyphicon.glyphicon-user
+            =form.text_field :username, id:'login-username', class:'form-control', placeholder: t(:username)
+
+          .input-group
+            span.input-group-addon
+              i.glyphicon.glyphicon-lock
+            =form.password_field :password, class:'form-control', placeholder: t(:password)
+
+          .input-group
+            .form-group
+              .col-sm-12.controls
+                =form.submit t(:sign_in), class:'btn btn-success'
+
