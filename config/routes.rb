@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  match '/sign-in' => 'session#new', via: :get, as: :sign_in
+
+  match '/sign-in' => 'session#create', via: :post, as: :authenticate
+
+  match '/sign-in' => 'session#destory', via: :get, as: :sign_out
+
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
