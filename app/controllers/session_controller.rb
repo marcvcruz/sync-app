@@ -3,9 +3,9 @@ class SessionController < ApplicationController
   end
 
   def create
-    user = User.find_by username: params[:session][:username].underscore
+    user = User.find_by(username: params[:session][:username].downcase)
     if user and user.authenticate(params[:session][:password])
-      #login_user(user)
+      session[:user_id] = user.id
       redirect_to :root and return
     end
 
@@ -13,6 +13,9 @@ class SessionController < ApplicationController
     render :new
   end
 
+
   def destroy
+    session[:user_id] = nil
+    redirect_to :sign_in
   end
 end
