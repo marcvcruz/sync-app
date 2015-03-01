@@ -31,9 +31,10 @@ RSpec.describe SessionController, type: :controller do
     end
   end
 
-  describe 'DELETE #destroy' do
-    it 'returns http success' do
-      delete :destroy
+  describe 'GET /sign-out' do
+    it 'signs out current user and redirects to sign-in page' do
+      controller.session[:user_id] = User.all.first.id
+      get :destroy
       expect(controller.current_user).to be_nil
       expect(response).to redirect_to sign_in_path
     end

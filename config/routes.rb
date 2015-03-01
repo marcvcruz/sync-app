@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   match '/sign-in' => 'session#create', via: :post, as: :authenticate
 
-  match '/sign-out' => 'session#destroy', via: :delete, as: :sign_out
+  match '/sign-out' => 'session#destroy', via: :get, as: :sign_out
 
   root 'welcome#index'
 
