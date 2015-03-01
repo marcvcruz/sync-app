@@ -4,10 +4,10 @@ RSpec.describe User, type: :model do
 
   let(:user) {
     User.new(
-      first_name:'Taylor',
+      first_name:'Mitch',
       last_name:'Robb',
-      username: 'trobb',
-      email:'trobb@gmail.com',
+      username: 'mrobb',
+      email:'mrobb@gmail.com',
       password: 'This is a valid password!'
     )
   }
@@ -65,7 +65,7 @@ RSpec.describe User, type: :model do
 
     it 'is invalid if it is not unique' do
       user.save
-      dup_user = User.new(username: 'trobb')
+      dup_user = User.new(username: 'mrobb')
       expect(dup_user.valid?).to be false
       expect(dup_user.errors.messages[:username].count).to be 1
     end
@@ -91,17 +91,6 @@ RSpec.describe User, type: :model do
   end
 
   describe 'password' do
-    it 'is required' do
-      user = User.new(first_name:'Taylor', last_name:'Robb', username: 'trobb', email: 'trobb@email.com', password: '')
-      expect(user.valid?).to eq false
-      expect(user.errors.messages[:password].count).to be 2
-    end
-
-    it 'is valid if length is between 8 and 30' do
-      user.password = 'Good password'
-      expect(user.valid?).to eq true
-    end
-
     it 'is invalid if length is less than 8 characters' do
       user.password = 'short'
       expect(user.valid?).to eq false
