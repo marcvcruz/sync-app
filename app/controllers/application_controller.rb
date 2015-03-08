@@ -1,11 +1,7 @@
 class ApplicationController < ActionController::Base
+  include SessionHelper
   protect_from_forgery with: :exception
-
   before_filter :authenticate
-
-  def current_user
-    @current_user ||= User.find(session[:user_id]) unless session[:user_id].nil?
-  end
 
   private
 
