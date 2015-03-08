@@ -1,7 +1,13 @@
 en:
   hello: Hello world
+  sync: SYNC
+  admin: Admin
+  create_user: Create user
+  manage_users: Manager users
   sign_in: Sign in
   sign_out: Sign out
   username: Username
   password: Password
   incorrect_username_password: The username or password you entered is invalid.
+  user_greeting: Hello
+  profile: Profile
