@@ -1,15 +1,25 @@
 module SessionHelper
 
   def sign_in(user)
+    cookies.signed[:user_id] = { value: user.id, expires: 1.month.from_now }
     @current_user = user
-    session[:user_id] = user.id
+  end
+
+  def remember(user)
+    user.remember
+    cookies.signed[:remember_token] = { value: user.remember_token, expires: 1.month.from_now }
   end
 
   def sign_out
-    session[:user_id] = nil
+    cookies.delete(:user_id)
+    cookies.delete(:remember_token)
+    @current_user = nil
   end
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) unless session[:user_id].nil?
+    @current_user ||= if (user_id = cookies.signed[:user_id])
+                        user = User.find(user_id)
+                        user if user and user.authenticated?(cookies.signed[:remember_token])
+                      end
   end
 end

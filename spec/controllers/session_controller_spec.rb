@@ -18,6 +18,8 @@ RSpec.describe SessionController, type: :controller do
       post :create, session: { username: 'trobb', password: 'Wrong password'}
       expect(response).to have_http_status :success
       expect(controller.current_user).to be_nil
+      expect(cookies.signed[:user_id]).to be_nil
+      expect(cookies.signed[:remember_token]).to be_nil
       expect(flash.empty?).to_not be true
       expect(response).to render_template :new
     end
@@ -27,15 +29,22 @@ RSpec.describe SessionController, type: :controller do
     it 'signs in user and redirects to root' do
       post :create, session: { username: 'trobb', password: 'Password1' }
       expect(controller.current_user).to_not be_nil
+      expect(cookies.signed[:user_id]).to_not be_nil
+      expect(cookies.signed[:remember_token]).to_not be_nil
       expect(response).to redirect_to :root
     end
   end
 
   describe 'GET /sign-out' do
     it 'signs out current user and redirects to sign-in page' do
-      controller.session[:user_id] = User.all.first.id
+      user = User.first
+      user.remember
+      cookies.signed[:user_id] = user.id
+      cookies.signed[:remember_token] = user.remember_token
       get :destroy
       expect(controller.current_user).to be_nil
+      expect(cookies.signed[:user_id]).to be_nil
+      expect(cookies.signed[:remember_token]).to be_nil
       expect(response).to redirect_to sign_in_path
     end
   end
