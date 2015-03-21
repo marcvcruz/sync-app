@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
+  scope :standard_users, -> { where(is_admin: false) }
   attr_accessor :remember_token
 
-  enum status: { inactive: 0, activation_pending: 1, activated: 2 }
   has_secure_password
 
   before_save do
