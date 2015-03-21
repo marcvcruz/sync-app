@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, presence: true, length: { maximum: 50 }
   validates :username, presence: true, length: { maximum: 30 }, format: { with: /\A[a-zA-Z][a-zA-Z0-9\-._]+\z/i, allow_blank: true },
             uniqueness: { case_sensitive: false }
-  validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, allow_blank: true }
+  validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.\_]+\.[a-z]+\z/i, allow_blank: true }
   validates :password, length: { minimum: 8 }
 
   def self.digest(string)
