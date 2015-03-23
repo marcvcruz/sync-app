@@ -3,6 +3,7 @@ en:
   sync: SYNC
   admin: Admin
   create_user: Create user
+  edit_user: Edit user
   manage_users: Manager users
   sign_in: Sign in
   sign_out: Sign out
@@ -16,6 +17,7 @@ en:
   last_name: Last name
   email: Email
   is_admin: Make user an admin?
+  password_confirmation: Password confirmation
 
   helpers:
     submit:
