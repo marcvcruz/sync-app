@@ -1,20 +1,3 @@
 h1 =t :new_user
 
-=form_for @user do |f|
-  .form-group
-    =f.label :first_name
-    =f.text_field :first_name, class: 'form-control', placeholder:"#{t :first_name}"
-  .form-group
-    =f.label :last_name
-    =f.text_field :last_name, class: 'form-control', placeholder:"#{t :last_name}"
-  .form-group
-    =f.label :username
-    =f.text_field :username, class: 'form-control', placeholder: "#{t :username}"
-  .form-group
-    =f.label :email
-    =f.text_field :email, class: 'form-control', placeholder: "#{t :email}"
-  .checkbox
-    label
-      =f.check_box :is_admin
-      =t :is_admin
-  =f.submit class:'btn.btn-default'
+=render 'users/user_form'

@@ -1,0 +1,54 @@
+=form_for @user do |f|
+
+  .form-group
+    =f.label :username
+    -if @user.persisted?
+      =label_tag nil, @user.username, class: 'form-control readonly'
+    -else
+      =f.text_field :username, class: 'form-control', placeholder: "#{t :username}"
+      -if error_exists? :user_name
+        .error
+          =error_message_for :user_name
+
+  .form-group
+    =f.label :first_name
+    =f.text_field :first_name, class: 'form-control', placeholder:"#{t :first_name}"
+    -if error_exists? :first_name
+      .error
+        =error_message_for :first_name
+
+  .form-group
+    =f.label :last_name
+    =f.text_field :last_name, class: 'form-control', placeholder:"#{t :last_name}"
+    -if error_exists? :last_name
+      .error
+        =error_message_for :last_name
+
+  .form-group
+    =f.label :email
+    =f.text_field :email, class: 'form-control', placeholder: "#{t :email}"
+    -if error_exists? :email
+      .error
+        =error_message_for :email
+
+  -unless @user.persisted?
+    .form-group
+      =f.label :password
+      =f.text_field :password, class: 'form-control', placeholder: "#{t :password}"
+      -if error_exists? :password
+        .error
+          =error_message_for :password
+
+    .form-group
+      =f.label :password_confirmation
+      =f.text_field :password_confirmation, class: 'form-control', placeholder: "#{t :password_confirmation}"
+      -if error_exists? :password_confirmation
+        .error
+          =error_message_for :password_confirmation
+
+  .checkbox
+    label
+      =f.check_box :is_admin
+      =t :is_admin
+
+  =f.submit class:'btn.btn-default'
