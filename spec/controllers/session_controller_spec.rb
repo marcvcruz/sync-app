@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe SessionController, type: :controller do
 
-  User.create(first_name:'Taylor', last_name: 'Robb', email: 'trobb@hotmail.com', username: 'trobb', password:'Password1')
+  before :all do
+    FactoryGirl.create :user, first_name:'Taylor', last_name: 'Robb', email: 'trobb@hotmail.com', username: 'trobb', password:'Password1'
+  end
 
   describe 'GET /sign-in' do
     it 'returns http success' do
