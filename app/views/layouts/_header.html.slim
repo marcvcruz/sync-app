@@ -20,9 +20,9 @@ nav.navbar.navbar-inverse
             ul.dropdown-menu role='menu'
               -if current_user.is_admin
                 li
-                  a href='#' =t(:create_user)
+                  =link_to t(:create_user), new_user_path
                 li
-                  a href='#' =t(:manage_users)
+                  =link_to t(:manage_users), users_path
               li
                 a href="#" =t(:profile)
               li.divider
