@@ -34,14 +34,14 @@
   -unless @user.persisted?
     .form-group
       =f.label :password
-      =f.text_field :password, class: 'form-control', placeholder: "#{t :password}"
+      =f.password_field :password, class: 'form-control', placeholder: "#{t :password}"
       -if error_exists? :password
         .error
           =error_message_for :password
 
     .form-group
       =f.label :password_confirmation
-      =f.text_field :password_confirmation, class: 'form-control', placeholder: "#{t :password_confirmation}"
+      =f.password_field :password_confirmation, class: 'form-control', placeholder: "#{t :password_confirmation}"
       -if error_exists? :password_confirmation
         .error
           =error_message_for :password_confirmation
