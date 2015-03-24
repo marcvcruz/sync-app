@@ -1,5 +1,5 @@
-nav.navbar.navbar-default
-  .container-fluid
+nav.navbar.navbar-inverse
+  .container
     /! Brand and toggle get grouped for better mobile display
     .navbar-header
       button.navbar-toggle.collapsed data-target='#bs-example-navbar-collapse-1' data-toggle='collapse' type='button'
@@ -14,7 +14,8 @@ nav.navbar.navbar-default
         -if current_user
           li.dropdown
             a.dropdown-toggle aria-expanded='false' data-toggle='dropdown' href='#' role='button'
-              ="#{t(:user_greeting)} #{current_user.first_name}"
+              span.glyphicon.glyphicon-user aria-hidden='true'
+              ="#{current_user.first_name}"
               span.caret
             ul.dropdown-menu role='menu'
               -if current_user.is_admin
