@@ -6,9 +6,9 @@
       =label_tag nil, @user.username, class: 'form-control readonly'
     -else
       =f.text_field :username, class: 'form-control', placeholder: "#{t :username}"
-      -if error_exists? :user_name
+      -if error_exists? :username
         .error
-          =error_message_for :user_name
+          =error_message_for :username
 
   .form-group
     =f.label :first_name
