@@ -3,6 +3,7 @@ en:
   sync: SYNC
   admin: Admin
   create_user: Create user
+  edit_user: Edit user
   manage_users: Manager users
   sign_in: Sign in
   sign_out: Sign out
@@ -11,3 +12,15 @@ en:
   incorrect_username_password: The username or password you entered is invalid.
   user_greeting: Hello
   profile: Profile
+  new_user: New user
+  first_name: First name
+  last_name: Last name
+  email: Email
+  is_admin: Make user an admin?
+  password_confirmation: Password confirmation
+
+  helpers:
+    submit:
+      user:
+        create: Create new user
+        update: Update user
