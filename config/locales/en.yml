@@ -18,7 +18,7 @@ en:
   email: Email
   is_admin: Make user an admin?
   password_confirmation: Password confirmation
-
+  forgot_your_password: Forgot your password?
   helpers:
     submit:
       user:
