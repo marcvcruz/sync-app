@@ -19,6 +19,9 @@ en:
   is_admin: Make user an admin?
   password_confirmation: Password confirmation
   forgot_your_password: Forgot your password?
+  continue: Continue
+  send_password_reset_email: Send email
+  password_reset_instructions: Enter the e-mail address associated with your account, then click Continue. We'll email you a link to a page where you can easily create a new password.
   helpers:
     submit:
       user:
