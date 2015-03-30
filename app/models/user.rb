@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   scope :standard_users, -> { where(is_admin: false) }
-  attr_accessor :remember_token
+  attr_accessor :remember_token, :reset_token
 
   has_secure_password
 
@@ -31,5 +31,15 @@ class User < ActiveRecord::Base
 
   def authenticated?(remember_token)
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  end
+
+  def create_reset_digest
+    self.reset_token = User.new_token
+    update_attribute :reset_digest,  User.digest(reset_token)
+    update_attribute :reset_sent_at, Time.zone.now
+  end
+
+  def send_password_reset_email
+    UserMailer.password_reset(self).deliver_now
   end
 end

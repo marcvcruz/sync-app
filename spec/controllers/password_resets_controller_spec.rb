@@ -19,6 +19,7 @@ RSpec.describe PasswordResetsController, type: :controller do
 
   describe '#edit' do
     it 'returns http success' do
+      user = FactoryGirl.create
       get :edit
       expect(response).to have_http_status :success
     end
