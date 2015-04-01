@@ -7,16 +7,16 @@ p =t :choose_a_new_password
   .form-group
     =form.label :password
     =form.password_field :password, class: 'form-control'
-    -if error_exists? :password
+    -if error_exists? @user, :password
       .error
-        =error_message_for :password
+        =error_message_for @user, :password
 
   .form-group
     =form.label :password_confirmation
     =form.password_field :password_confirmation, class: 'form-control'
-    -if error_exists? :password_confirmation
+    -if error_exists? @user, :password_confirmation
       .error
-        =error_message_for :password_confirmation
+        =error_message_for @user, :password_confirmation
 
   =form.submit value: t(:continue), class:'btn.btn-default'
 
