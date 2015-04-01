@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.all_except current_user
   end
 
   def new
@@ -26,6 +26,7 @@ class UsersController < ApplicationController
     redirect_to users_path and return if @user.update update_user_params
     render :edit
   end
+
   private
 
     def create_user_params

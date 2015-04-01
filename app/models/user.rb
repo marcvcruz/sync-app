@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   validates :username, presence: true, length: { maximum: 30 }, format: { with: /\A[a-zA-Z][a-zA-Z0-9\-._]+\z/i, allow_blank: true },
             uniqueness: { case_sensitive: false }
   validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.\_]+\.[a-z]+\z/i, allow_blank: true }
-  validates :password, confirmation: true, length: { minimum: 8 }, on: :create
+  validates :password, confirmation: true, length: { minimum: 8 }
 
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
 
   def self.new_token
     SecureRandom.urlsafe_base64
+  end
+
+  def self.all_except(user)
+    where.not id: user
   end
 
   def remember
