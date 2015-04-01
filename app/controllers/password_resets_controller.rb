@@ -39,6 +39,7 @@ class PasswordResetsController < ApplicationController
 
   def validate_user
     unless @user and @user.authenticated? :reset, params[:token]
+      flash[:alert] = t :error_occurred_during_authentication
       redirect_to new_password_reset_url
     end
   end
