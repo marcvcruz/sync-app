@@ -1,4 +1,6 @@
 class PasswordResetsController < ApplicationController
+  include SessionHelper
+
   skip_before_filter :authenticate
   before_filter :get_user, only: [:edit, :update]
   before_filter :validate_user, only: [:edit, :update]
@@ -18,7 +20,17 @@ class PasswordResetsController < ApplicationController
   def edit
   end
 
-  def patch
+  def update
+    @user.password = params[:user][:password]
+    @user.password_confirmation = params[:user][:password_confirmation]
+    if @user.valid? and @user.save
+      sign_in @user
+      remember @user
+      redirect_to :root and return
+    end
+    render :edit
+  end
+
   private
 
   def get_user
