@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.all_except current_user
   end
 
   def new
@@ -23,9 +23,11 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find params[:id]
-    redirect_to users_path and return if @user.update update_user_params
+    redirect_to users_path and return if @user.update_attributes update_user_params
+    flash.now[:error] = t :error_occurred_processing_last_request
     render :edit
   end
+
   private
 
     def create_user_params
