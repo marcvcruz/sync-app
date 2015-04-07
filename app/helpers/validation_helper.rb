@@ -1,6 +1,5 @@
 module ValidationHelper
   def error_exists?(model, field)
-    return false if model.valid?
     error_messages = model.errors.messages
     error_messages.has_key? field and not error_messages[field].empty?
   end
