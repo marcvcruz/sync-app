@@ -27,9 +27,11 @@ en:
   reset_password: Reset password
   password_reset: Password reset
   to_reset_your_password_click_the_link_below: "To reset your password click the link below:"
+  to_reset_your_password_visit_the_link_below: "To reset your password visit the link below:"
   check_your_email: An email has been sent to your email address with instructions on how to reset your password.
   password_reset_token_expired: The link to reset your password has expired or an error occurred while processing your link.
   error_occurred_during_authentication: Oops! An error occurred retrieving your information.
+  error_occurred_processing_last_request: Oops! An error occurred processing your last request.
   helpers:
     submit:
       user:
