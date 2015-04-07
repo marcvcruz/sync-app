@@ -2,6 +2,7 @@ en:
   hello: Hello world
   sync: SYNC
   admin: Admin
+  admin_user: Admin user?
   create_user: Create user
   edit_user: Edit user
   manage_users: Manager users

@@ -4,6 +4,7 @@ table.table.table-hover
   thead
     tr
       td =t :username
+      td.icon-column =t :admin_user
       td =t :first_name
       td =t :last_name
       td =t :email
@@ -13,6 +14,9 @@ table.table.table-hover
       tr.table-hover
         td
           =link_to user.username, edit_user_path(user.id)
+        td.icon-column
+          -if user.is_admin?
+            span.glyphicon.glyphicon-ok aria-hidden='true'
         td =user.first_name
         td =user.last_name
         td =user.email
