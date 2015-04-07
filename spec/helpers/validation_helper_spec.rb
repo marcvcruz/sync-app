@@ -8,6 +8,7 @@ describe ValidationHelper do
   describe '#error_exists?' do
     context 'for a user with a valid email' do
       it 'returns false' do
+        expect(user.valid?).to be true
         expect(helper.error_exists? user, :email).to be false
       end
     end
@@ -18,6 +19,7 @@ describe ValidationHelper do
       end
 
       it 'returns true' do
+        expect(user.valid?).to be false
         expect(helper.error_exists? user, :email).to be true
       end
     end
@@ -26,6 +28,7 @@ describe ValidationHelper do
   describe '#error_message_for' do
     context 'for a user with a valid email' do
       it 'does not return an error message' do
+        expect(user.valid?).to be true
         expect(helper.error_message_for user, :email).to be_nil
       end
     end
@@ -36,6 +39,7 @@ describe ValidationHelper do
       end
 
       it 'returns an error message' do
+        expect(user.valid?).to be false
         expect(helper.error_message_for user, :email).to_not be_nil
       end
     end
