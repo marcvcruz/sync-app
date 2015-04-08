@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'welcome#index'
+  root 'calendar#show'
 
   match '/forgot-password' => 'password_resets#new', via: :get, as: :new_password_reset
   match '/forgot-password' => 'password_resets#create', via: :post, as: :create_password_reset
@@ -15,4 +15,5 @@ Rails.application.routes.draw do
 
   resources :users
 
+  match '/calendar' => 'calendar#show', via: :get, as: :calendar
 end
