@@ -40,14 +40,14 @@ class PasswordResetsController < ApplicationController
   def validate_user
     unless @user and @user.authenticated? :reset, params[:token]
       flash[:alert] = t :error_occurred_during_authentication
-      redirect_to new_password_reset_url
+      redirect_to new_password_reset_path
     end
   end
 
   def check_expiration
     if @user.reset_sent_at.advance(hours: 24).past?
       flash[:alert] = t :password_reset_token_expired
-      redirect_to new_password_reset_url
+      redirect_to new_password_reset_path
     end
   end
 end

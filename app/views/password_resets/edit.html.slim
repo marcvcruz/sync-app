@@ -1,7 +1,7 @@
 h1 =t :password_reset
 p =t :choose_a_new_password
 
-=form_for @user, method: :put, url: update_password_reset_url(params[:token]) do |form|
+=form_for @user, method: :put, url: update_password_reset_path(params[:token]) do |form|
   =hidden_field_tag :username, @user.username
 
   .form-group
