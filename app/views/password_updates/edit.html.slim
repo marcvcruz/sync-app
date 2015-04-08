@@ -1,0 +1,22 @@
+h2 =t :change_password
+
+=form_for :password_update, html: { url: update_password_path } do |form|
+  .form-group
+    =form.label :username
+    =label_tag nil, current_user.username, class: 'form-control readonly'
+
+  .form-group
+    =form.label :password
+    =form.password_field :password, class: 'form-control'
+    -if error_exists? current_user, :password
+      .error
+        =error_message_for current_user, :password
+
+  .form-group
+    =form.label :password_confirmation
+    =form.password_field :password_confirmation, class: 'form-control'
+    -if error_exists? current_user, :password_confirmation
+      .error
+        =error_message_for current_user, :password_confirmation
+
+    =form.submit value: t(:continue), class: 'btn.btn-default'
