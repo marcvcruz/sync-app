@@ -1,0 +1,36 @@
+header.calendar-header {
+  font-size: 28px;
+  margin: 20px 0;
+
+  a {
+    margin: 0 10px;
+  }
+}
+
+table {
+  thead {
+    background: #3a3636;
+    color: #fff;
+  }
+  tbody {
+    tr {
+      td {
+        height: 150px;
+        width: 180px;
+        text-align: right;
+
+        &.prev-month, &.next-month {
+          color: gray;
+        }
+
+        &.wday-0, &.wday-6 {
+          background: #e2e2e2;
+        }
+
+        &.today {
+          background: #8daad1;
+        }
+      }
+    }
+  }
+}
