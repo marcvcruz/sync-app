@@ -33,6 +33,8 @@ en:
   password_reset_token_expired: The link to reset your password has expired or an error occurred while processing your link.
   error_occurred_during_authentication: Oops! An error occurred retrieving your information.
   error_occurred_processing_last_request: Oops! An error occurred processing your last request.
+  change_password: Change password
+  password_successfully_changed: Your password was successfully changed.
   helpers:
     submit:
       user:
