@@ -39,7 +39,7 @@ RSpec.describe PasswordResetsController, type: :controller do
 
       it 'redirects to //forgot-password' do
         get :edit, token: user.reset_token, username: user.username
-        expect(response).to redirect_to new_password_reset_url
+        expect(response).to redirect_to new_password_reset_path
       end
     end
   end
