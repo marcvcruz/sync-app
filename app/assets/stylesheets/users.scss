@@ -2,8 +2,18 @@
   color: #B00100;
 }
 
-td.icon-column {
-  text-align: center;
+table {
+  thead {
+    tr {
+      td {
+        font-weight: 800;
+      }
+    }
+  }
+
+  td.icon-column {
+    text-align: center;
+  }
 }
 
 
