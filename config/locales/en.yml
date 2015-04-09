@@ -35,6 +35,8 @@ en:
   error_occurred_processing_last_request: Oops! An error occurred processing your last request.
   change_password: Change password
   password_successfully_changed: Your password was successfully changed.
+  blog: Blog
+  calendar: Calendar
   helpers:
     submit:
       user:
