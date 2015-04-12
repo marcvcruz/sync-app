@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150328050226) do
+ActiveRecord::Schema.define(version: 20150411134827) do
+
+  create_table "events", force: :cascade do |t|
+    t.integer  "organizer_id"
+    t.string   "description",                  null: false
+    t.date     "start_date",                   null: false
+    t.time     "start_time"
+    t.boolean  "is_all_day",   default: false
+    t.text     "notes"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "events", ["organizer_id"], name: "index_events_on_organizer_id"
+  add_index "events", ["start_date"], name: "index_events_on_start_date"
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
