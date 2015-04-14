@@ -5,32 +5,21 @@ RSpec.describe Event, type: :model do
     FactoryGirl.create :event
   }
 
-  it 'validates with valid attribute values' do
-    expect(event.valid?).to be true
-  end
-
   it 'requires an organizer' do
-    event.organizer = nil
-    expect(event.valid?).to be false
-    expect(event.errors.messages[:organizer].empty?).to be false
+    expect { event.organizer = nil }.to change(event, :valid?).from(true).to(false)
   end
 
   it 'requires a description' do
-    event.description = ''
-    expect(event.valid?).to be false
-    expect(event.errors.messages[:description].empty?).to be false
+    expect { event.description = '' }.to change(event, :valid?).from(true).to(false)
   end
 
   it 'requires description to be less than 100 characters' do
-    event.description = 'This description is over 100 characters in total length and therefore should fail the length validation'
-    expect(event.valid?).to be false
-    expect(event.errors.messages[:description].empty?).to be false
+    expect { event.description = 'This description is over 100 characters in total length and therefore should fail the length validation' }
+      .to change(event, :valid?).from(true).to(false)
   end
 
   it 'requires a start date' do
-    event.start_date = nil
-    expect(event.valid?).to be false
-    expect(event.errors.messages[:start_date].empty?).to be false
+    expect { event.start_date = nil }.to change(event, :valid?).from(true).to(false)
   end
 
   context 'all day event' do
@@ -39,8 +28,7 @@ RSpec.describe Event, type: :model do
     end
 
     it 'does not require a start time' do
-      event.start_time = nil
-      expect(event.valid?).to be true
+      expect { event.start_time = nil }.to_not change(event, :valid?)
     end
   end
 
@@ -50,11 +38,7 @@ RSpec.describe Event, type: :model do
     end
 
     it 'requires a start time' do
-      event.start_time = nil
-      expect(event.valid?).to be false
-      expect(event.errors.messages[:start_time].empty?).to be false
-      event.start_time = Faker::Time.forward 2
-      expect(event.valid?).to be true
+      expect { event.start_time = nil }.to change(event, :valid?).from(true).to(false)
     end
   end
 end
