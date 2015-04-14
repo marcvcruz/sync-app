@@ -42,6 +42,9 @@ en:
       user:
         create: Create new user
         update: Update user
+      event:
+        create: Create new event
+        update: Update event
   user_mailer:
     password_reset:
       subject: Password reset
@@ -57,3 +60,9 @@ en:
       passwords_do_not_match: Passwords do not match
       no_spaces_or_special_characters: Usernames can not have spaces or special characters
       wrong_password: Oops! You entered the wrong password.
+  new_event: New event
+  description: Description
+  start_date: Start date
+  start_time: Start time
+  is_all_day: All day event?
+  notes: Notes
