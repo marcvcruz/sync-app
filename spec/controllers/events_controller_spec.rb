@@ -10,15 +10,16 @@ RSpec.describe EventsController, type: :controller do
   describe 'GET #index' do
     it 'returns http success' do
       get :index
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status :success
     end
   end
 
   describe 'GET #new' do
     it 'returns http success' do
       get :new
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status :success
       expect(assigns(:event).new_record?).to be true
+      expect(response).to render_template :new
     end
   end
 
