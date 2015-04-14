@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
   belongs_to :organizer, class_name: User
 
+  validates_length_of :description, maximum: 100
   validates_presence_of :organizer, :description, :start_date
   validates_presence_of :start_time, if: :not_all_day?
 

@@ -21,6 +21,12 @@ RSpec.describe Event, type: :model do
     expect(event.errors.messages[:description].empty?).to be false
   end
 
+  it 'requires description to be less than 100 characters' do
+    event.description = 'This description is over 100 characters in total length and therefore should fail the length validation'
+    expect(event.valid?).to be false
+    expect(event.errors.messages[:description].empty?).to be false
+  end
+
   it 'requires a start date' do
     event.start_date = nil
     expect(event.valid?).to be false
