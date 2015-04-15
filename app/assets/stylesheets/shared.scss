@@ -17,6 +17,14 @@ form {
   input[type=submit] {
     margin: 20px 0px;
   }
+
+  ng-messages.ng-active {
+    color: #B00100;
+  }
+
+  .error {
+    color: #B00100
+  }
 }
 
 .alert {

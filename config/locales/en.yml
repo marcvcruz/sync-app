@@ -45,5 +45,12 @@ en:
   user_mailer:
     password_reset:
       subject: Password reset
-
   choose_a_new_password: Choose a new password and enter it below.
+  errors:
+    messages:
+      field_is_required: This field is required
+      please_use_the_correct_format: Please enter the correct format
+      length_can_not_exceed_max: Length can not exceed the maximum number of characters
+      username_is_already_being_used: Username is already in use
+      minimum_password_length_requirement: Passwords need to be atleast 8 characters
+      passwords_do_not_match: Passwords do not match
