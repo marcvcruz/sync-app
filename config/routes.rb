@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   resources :users
 
   match '/calendar' => 'calendar#show', via: :get, as: :calendar
+
+  match '/api/username-uniqueness' => 'api#username_uniqueness', via: :get
 end
