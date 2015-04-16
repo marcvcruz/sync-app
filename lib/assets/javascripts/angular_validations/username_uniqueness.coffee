@@ -7,4 +7,4 @@ angular.module('angularValidation').directive 'usernameUniqueness', ($http, $q) 
         params:
           username: viewValue
       .then (response) ->
-        if response.data.result is 200 then $q.reject('Username already exists in use') else true
+        if response.data.status is 200 then $q.reject('Username already exists in use') else true
