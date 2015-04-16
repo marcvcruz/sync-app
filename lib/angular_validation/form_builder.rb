@@ -7,7 +7,7 @@ module AngularValidation
 
     def initialize(object_name, object, template, options)
       options[:html] ||= {}
-      options[:html].reverse_merge! 'submit-on-valid' => '' , name: options[:as], autocomplete: 'off', novalidate: ''
+      options[:html].reverse_merge! 'submit-on-valid' => '' , name: options[:as] || name_for(object_name), autocomplete: 'off', novalidate: ''
       options[:ng_model_name] ||= "#{object_name}"
       options[:form_name] ||= options[:html][:name]
       super
