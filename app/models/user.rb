@@ -13,9 +13,10 @@ class User < ActiveRecord::Base
   validates_length_of :first_name, :last_name, maximum: 50, message: :length_can_not_exceed_max
   validates :username,
             length: { maximum: 30, message: :length_can_not_exceed_max },
-            format: { with: /[a-zA-Z][a-zA-Z0-9\-._]+/i, allow_blank: true, message: :please_use_the_correct_format }
+            format: { with: /\A[a-z]+[\w\-\.]+\z/i, multiline: false, allow_blank: true, message: :no_spaces_or_special_characters },
+            uniqueness: { case_sensitive: false }
   validates :email,
-            format: { with: /[\w+\-.]+@[a-z\d\-.\_]+\.[a-z]+/i, allow_blank: true , message: :please_use_the_correct_format }
+            format: { with: /\A[a-z]+(\_{1}a-z+0-9+)+[\w+\-.]+@[a-z]*[\w]+\.[a-z]+\z/i, allow_blank: true , message: :please_use_a_valid_email_address }
   validates :password,
             length: { minimum: 8, message: :minimum_password_length_requirement, allow_blank: true },
             confirmation: { message: :passwords_do_not_match }

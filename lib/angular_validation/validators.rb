@@ -17,9 +17,9 @@ module ActiveModel
       def html_annotations(model, model_name, method_name, options)
         with_regex = @options[:with]
         if with_regex.respond_to?(:call)
-          { 'pattern' => with_regex.call(model).source }
+          { 'pattern' => with_regex.call(model).source.sub('\\A', '').sub('\\z', '') }
         else
-          { 'pattern' => with_regex.source }
+          { 'pattern' => with_regex.source.sub('\\A', '').sub('\\z', '') }
         end
       end
 
