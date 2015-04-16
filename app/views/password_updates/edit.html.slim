@@ -13,11 +13,11 @@ h2 =t :change_password
   .form-group
     =form.label :password
     =form.password_field :password, class: 'form-control', required: 'required'
-    =form.ng_messages :password, additional_validators: { 'required' => t('errors.messages.field_is_required') }
+    =form.ng_messages :password, additional_validators: { required: t('errors.messages.field_is_required') }
 
   .form-group
     =form.label :password_confirmation
     =form.password_field :password_confirmation, class: 'form-control', required: 'required'
-    =form.ng_messages :password_confirmation, additional_validators: { 'required' =>  t('errors.messages.field_is_required') }
+    =form.ng_messages :password_confirmation, additional_validators: { required:  t('errors.messages.field_is_required') }
 
   =form.submit value: t(:continue), class: 'btn.btn-default'

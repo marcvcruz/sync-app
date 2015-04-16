@@ -28,6 +28,8 @@ class PasswordResetsController < ApplicationController
       remember @user
       redirect_to :root and return
     end
+
+    flash.now[:alert] = t :error_occurred_processing_last_request
     render :edit
   end
 
