@@ -8,4 +8,8 @@ html
     .header
       =render 'layouts/header'
     .main-body.container ng-app='SyncApp'
+      -unless flash.empty?
+        -flash.each do |key,value|
+          div class="#{key}"
+            =value
       =yield

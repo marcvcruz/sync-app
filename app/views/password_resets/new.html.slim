@@ -4,9 +4,12 @@
 
 =t :password_reset_instructions
 
-=form_for :password_reset, html: { id:'password_resets', url: create_password_reset_path } do |form|
+=form_for :password_reset, html: { name: 'password_reset', url: create_password_reset_path, 'submit-on-valid' => '' } do |form|
   .form-group
     =form.label :username
-    =form.text_field :username, class: 'form-control'
+    =form.text_field :username, class: 'form-control', required: 'required'
+    ng-messages for="password_reset['password_reset[username]'].$error"
+      ng-message when="required"
+        =t 'errors.messages.field_is_required'
 
   =form.submit value: t(:continue), class:'btn.btn-default'

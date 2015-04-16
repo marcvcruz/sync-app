@@ -56,3 +56,4 @@ en:
       minimum_password_length_requirement: Passwords need to be atleast 8 characters
       passwords_do_not_match: Passwords do not match
       no_spaces_or_special_characters: Usernames can not have spaces or special characters
+      wrong_password: Oops! You entered the wrong password.

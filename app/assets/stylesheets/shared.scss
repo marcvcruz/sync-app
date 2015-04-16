@@ -27,11 +27,21 @@ form {
   }
 }
 
-.alert {
+@mixin notification {
   width: 100%;
-  border: 1px solid #ff3f3f;
-  background-color: #fff5f5;
   margin-top: 1em;
   margin-bottom: 2em;
   padding: 0.83333em;
+  border-radius: 4px;
+}
+.alert {
+  border: 1px solid #ff3f3f;
+  background-color: #fff5f5;
+  @include notification
+}
+
+.notice {
+  border: 1px solid #4c4cff;
+  background-color: #e5e5ff;
+  @include notification
 }

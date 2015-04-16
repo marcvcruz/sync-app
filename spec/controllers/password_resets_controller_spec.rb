@@ -51,7 +51,7 @@ RSpec.describe PasswordResetsController, type: :controller do
 
     it 'redirects to homepage' do
       old_password = user.password
-      put :update, token: user.reset_token, username: user.username, user: { password: 'New Password', password_confirmation: 'New Password' }
+      put :update, token: user.reset_token, username: user.username, password_reset: { password: 'New Password', password_confirmation: 'New Password' }
       expect(controller.current_user).to eql user
       expect(controller.current_user.authenticated?(:password, old_password)).to be false
       expect(controller.current_user.authenticated?(:password, 'New Password')).to be true

@@ -21,8 +21,8 @@ class PasswordResetsController < ApplicationController
   end
 
   def update
-    @user.password = params[:user][:password]
-    @user.password_confirmation = params[:user][:password_confirmation]
+    @user.password = params[:password_reset][:password]
+    @user.password_confirmation = params[:password_reset][:password_confirmation]
     if @user.valid? and @user.save
       sign_in @user
       remember @user
