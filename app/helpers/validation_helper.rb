@@ -5,6 +5,6 @@ module ValidationHelper
   end
   
   def error_message_for(model, field)
-    field.to_s.humanize << ' ' << (model.errors.messages[field][0] || '') if error_exists? model, field
+     (model.errors.messages[field][0] || '') if error_exists? model, field
   end
 end

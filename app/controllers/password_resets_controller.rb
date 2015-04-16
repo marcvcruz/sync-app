@@ -21,13 +21,15 @@ class PasswordResetsController < ApplicationController
   end
 
   def update
-    @user.password = params[:user][:password]
-    @user.password_confirmation = params[:user][:password_confirmation]
+    @user.password = params[:password_reset][:password]
+    @user.password_confirmation = params[:password_reset][:password_confirmation]
     if @user.valid? and @user.save
       sign_in @user
       remember @user
       redirect_to :root and return
     end
+
+    flash.now[:alert] = t :error_occurred_processing_last_request
     render :edit
   end
 

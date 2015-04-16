@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 gem 'rails', '4.2.0'
 gem 'bootstrap-sass', '~> 3.3.3'
@@ -8,12 +9,15 @@ gem 'slim-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
-gem 'angularjs-rails'
+gem 'rails-assets-angular', '~> 1.3.0-rc.1'
+gem 'rails-assets-angular-messages', '~> 1.3.0-rc.1'
+gem 'rails-assets-angular-mocks', '~> 1.3.0-rc.1'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 gem 'simple_calendar', '~> 1.1.0'
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'

@@ -44,3 +44,5 @@ module SyncApp
     config.beginning_of_week = :sunday
   end
 end
+
+require "angular_validation"

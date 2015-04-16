@@ -1,50 +1,38 @@
-=form_for @user do |f|
+=form_for @user, builder: AngularValidation::FormBuilder do |f|
 
   .form-group
     =f.label :username
     -if @user.persisted?
       =label_tag nil, @user.username, class: 'form-control readonly'
     -else
-      =f.text_field :username, class: 'form-control', placeholder: "#{t :username}"
-      -if error_exists? @user, :username
-        .error
-          =error_message_for @user, :username
+      =f.text_field :username, class: 'form-control', placeholder: t(:username), 'ng-model-options' => "{ updateOn: 'blur' }", 'username-uniqueness' => ''
+      =f.ng_messages :username, additional_validators: { usernameUniqueness: t('errors.messages.username_is_already_being_used') }
 
   .form-group
     =f.label :first_name
-    =f.text_field :first_name, class: 'form-control', placeholder:"#{t :first_name}"
-    -if error_exists? @user, :first_name
-      .error
-        =error_message_for @user,  :first_name
+    =f.text_field :first_name, class: 'form-control', placeholder: t(:first_name)
+    =f.ng_messages :first_name
 
   .form-group
     =f.label :last_name
-    =f.text_field :last_name, class: 'form-control', placeholder:"#{t :last_name}"
-    -if error_exists? @user, :last_name
-      .error
-        =error_message_for @user, :last_name
+    =f.text_field :last_name, class: 'form-control', placeholder: t(:last_name)
+    =f.ng_messages :last_name
 
   .form-group
     =f.label :email
-    =f.text_field :email, class: 'form-control', placeholder: "#{t :email}"
-    -if error_exists? @user, :email
-      .error
-        =error_message_for @user, :email
+    =f.text_field :email, class: 'form-control', placeholder: t(:email)
+    =f.ng_messages :email
 
   -unless @user.persisted?
     .form-group
       =f.label :password
-      =f.password_field :password, class: 'form-control', placeholder: "#{t :password}"
-      -if error_exists? @user, :password
-        .error
-          =error_message_for @user, :password
+      =f.password_field :password, class: 'form-control', placeholder: t(:password), required: 'required'
+      =f.ng_messages :password, additional_validators: { 'required' => t('errors.messages.field_is_required') }
 
     .form-group
       =f.label :password_confirmation
-      =f.password_field :password_confirmation, class: 'form-control', placeholder: "#{t :password_confirmation}"
-      -if error_exists? @user, :password_confirmation
-        .error
-          =error_message_for @user, :password_confirmation
+      =f.password_field :password_confirmation, class: 'form-control', placeholder: t(:password_confirmation), required: 'required'
+      =f.ng_messages :password_confirmation, additional_validators: { required: t('errors.messages.field_is_required') }
 
   .checkbox
     label

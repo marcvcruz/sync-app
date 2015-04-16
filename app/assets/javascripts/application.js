@@ -3,6 +3,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap-sprockets
 //= require angular
+//= require angular-messages
+//= require bootstrap-sprockets
+//= require angular_validations
 //= require_tree .

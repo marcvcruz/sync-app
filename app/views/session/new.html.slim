@@ -5,20 +5,22 @@
         .panel-title =t(:sign_in)
       .panel-body
 
-        -if flash[:alert]
-          #login-alert.alert.alert-danger.col-sm-12
-            =flash[:alert]
-
-        =form_for :session, html: { id:'loginform', url: sign_in_path, class:'form-horizontal', role: 'form' } do |form|
+        =form_for :session, html: { id:'loginform', url: sign_in_path, class:'form-horizontal', role: 'form' }, builder: AngularValidation::FormBuilder do |form|
           .input-group
             span.input-group-addon
               i.glyphicon.glyphicon-user
-            =form.text_field :username, id:'login-username', class:'form-control', placeholder: t(:username)
+            =form.text_field :username, id:'login-username', class:'form-control', placeholder: t(:username), required: :required
+            ng-messages for="session['session[username]'].$error" ng-show=""
+              ng-message when="required"
+                =t 'errors.messages.field_is_required'
 
           .input-group
             span.input-group-addon
               i.glyphicon.glyphicon-lock
-            =form.password_field :password, class:'form-control', placeholder: t(:password)
+            =form.password_field :password, class:'form-control', placeholder: t(:password), required: :required
+            ng-messages for="session['session[password]'].$error" ng-show=""
+              ng-message when="required"
+                =t 'errors.messages.field_is_required'
 
           .input-group
             .form-group
