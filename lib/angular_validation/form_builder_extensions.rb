@@ -34,7 +34,7 @@ module AngularValidation
     def text_field(method, options = {})
       add_options method, options
       add_model_options options
-      value = @object.send method
+      value = @object.send method unless @object.nil?
       init_model_value value, options unless value.blank?
       super
     end
@@ -74,7 +74,8 @@ module AngularValidation
     end
 
     def add_validation_attributes(attribute, options)
-      validators = @object.class.validators_on(attribute) # the list of all validators assigned to attribute
+      validators = []
+      validators.concat(@object.class.validators_on(attribute)) unless @object.nil?
       validators.each do |validator|
         next if skip_validation?(@object, validator.options)
 
