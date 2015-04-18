@@ -66,3 +66,4 @@ en:
   start_time: Start time
   is_all_day: All day event?
   notes: Notes
+  event_successfully_created: Your event was successfully created.

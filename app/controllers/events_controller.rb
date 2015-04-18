@@ -1,17 +1,19 @@
 class EventsController < ApplicationController
+  before_filter :get_event, only: [:new, :create]
+
   def index
+    @events = Event.all
   end
 
   def new
-    @event = Event.new
   end
 
   def create
-    @event = Event.new event_params
-    @event.organizer = current_user
-    redirect_to :events and return if @event.valid? and @event.save
-
-    flash.now[:error] = t :error_occurred_processing_last_request
+    if @event.save
+      flash.now[:notice] = t :event_successfully_created
+      redirect_to :events and return
+    end
+    flash.now[:alert] = t :error_occurred_processing_last_request
     render :new
   end
 
@@ -24,7 +26,10 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit!
+    params.fetch(:event, {}).permit!
   end
 
+  def get_event
+    @event = Event.new event_params.reverse_merge!(organizer_id: current_user.id)
+  end
 end
