@@ -10,4 +10,5 @@
 //= require angular-messages
 //= require bootstrap-sprockets
 //= require angular_validations
+//= require date_time_filter
 //= require_tree .
