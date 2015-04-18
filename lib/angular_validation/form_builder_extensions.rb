@@ -3,33 +3,40 @@ require 'angular_validation/validators'
 module AngularValidation
   module FormBuilderExtensions
 
-    # def check_box(method, options = {}, checked_value = "1", unchecked_value = "0")
-    #   add_options method, options
-    #   checked = options[:checked]
-    #   init_model_value checked_value, options if checked
-    #   super
-    # end
-    #
-    # def radio_button(method, tag_value, options={})
-    #   add_options method, options
-    #   checked = options[:checked]
-    #   options['value'] = tag_value
-    #   init_model_value tag_value, options if checked
-    #   super
-    # end
-    #
+    def check_box(method, options = {}, checked_value = '1', unchecked_value = '0')
+      add_options method, options
+      checked = options[:checked]
+      init_model_value checked_value, options if checked
+      super
+    end
+
+    def radio_button(method, tag_value, options={})
+      add_options method, options
+      checked = options[:checked]
+      options['value'] = tag_value
+      init_model_value tag_value, options if checked
+      super
+    end
+
     def password_field(method, options = {})
       add_options method, options
       add_model_options options
       super
     end
-    #
-    # def text_area(method, options = {})
-    #   add_options method, options
-    #   value = @object.send method
-    #   init_model_value value, options if value
-    #   super
-    # end
+
+    def hidden_field(method, options = {})
+      add_options method, options
+      value = @object.send method unless @object.nil?
+      init_model_value value, options if value
+      super
+    end
+
+    def text_area(method, options = {})
+      add_options method, options
+      value = @object.send method unless @object.nil?
+      init_model_value value, options if value
+      super
+    end
 
     def text_field(method, options = {})
       add_options method, options
