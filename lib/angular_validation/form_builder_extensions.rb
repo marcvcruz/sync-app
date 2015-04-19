@@ -5,8 +5,6 @@ module AngularValidation
 
     def check_box(method, options = {}, checked_value="1", unchecked_value="0")
       add_options method, options
-      # options['ng-checked-value'] = checked_value
-      # options['ng-unchecked-value'] = unchecked_value
       init_model_value @object.send(method), options
       super
     end
