@@ -1,11 +1,5 @@
 $(document).ready ->
-  $('#start_date_picker')
-    .datetimepicker { format: 'L', keepInvalid: true, useCurrent: false, keepOpen: false }
-    .on 'dp.change', (e) ->
-      $(this).find('input:first').change()
-      $(this).data('DateTimePicker').hide()
-
-  $('#start_time_picker')
-    .datetimepicker { format: 'LT', keepInvalid: true, useCurrent: true, keepOpen: false }
+  $('#event_starting_at_container')
+    .datetimepicker { format: 'YYYY-MM-DD hh:mm A', sideBySide: true, keepInvalid: true, useCurrent: false }
     .on 'dp.change', (e) ->
       $(this).find('input:first').change()

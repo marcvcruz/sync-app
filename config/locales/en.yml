@@ -49,6 +49,11 @@ en:
     password_reset:
       subject: Password reset
   choose_a_new_password: Choose a new password and enter it below.
+  new_event: New event
+  description: Description
+  starting_at: Starting at
+  is_all_day: All day event?
+  notes: Notes
   errors:
     messages:
       field_is_required: This field is required
