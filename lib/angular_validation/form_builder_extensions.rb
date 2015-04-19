@@ -3,10 +3,11 @@ require 'angular_validation/validators'
 module AngularValidation
   module FormBuilderExtensions
 
-    def check_box(method, options = {}, checked_value = '1', unchecked_value = '0')
+    def check_box(method, options = {}, checked_value="1", unchecked_value="0")
       add_options method, options
-      checked = options[:checked]
-      init_model_value checked_value, options if checked
+      # options['ng-checked-value'] = checked_value
+      # options['ng-unchecked-value'] = unchecked_value
+      init_model_value @object.send(method), options
       super
     end
 
@@ -64,7 +65,8 @@ module AngularValidation
 
     def init_model_value(value, options)
       ng_model = options['ng-model']
-      options['ng-init'] ||= "#{ng_model} = '#{value}'"
+      value = "'#{value.to_s.gsub(/[\047\042]/, "\\\\\\0")}'" if value.is_a? String or value.respond_to? :to_time
+      options['ng-init'] ||= "#{ng_model} = #{value}"
     end
 
     def add_options(method, options)
