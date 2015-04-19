@@ -1,0 +1,22 @@
+=form_for @event, builder: AngularValidation::FormBuilder do |f|
+  .form-group
+    =f.label :description
+    =f.text_field :description, class: 'form-control'
+    =f.ng_messages :description
+
+  .checkbox
+    label
+      =f.check_box :is_all_day
+      =t :is_all_day
+
+  .form-group
+    =f.label :starting_at
+    =f.datetime_select :starting_at
+    =f.ng_messages :starting_at
+
+  .form-group
+    =f.label :notes
+    =f.text_area :notes, class: 'form-control', rows: 3
+    =f.ng_messages :notes
+
+  =f.submit class:'btn.btn-success'

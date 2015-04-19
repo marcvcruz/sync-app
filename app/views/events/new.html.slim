@@ -1,35 +1,3 @@
 h1 =t :new_event
 
-=form_for @event, builder: AngularValidation::FormBuilder do |f|
-  .form-group
-    =f.label :description
-    =f.text_field :description, class: 'form-control'
-    =f.ng_messages :description
-
-  .checkbox
-    label
-      =f.check_box :is_all_day, 'ng-click' => 'event.startTime=undefined'
-      =t :is_all_day
-
-  .form-group
-    =f.label :start_date
-    #start_date_picker.input-group.date
-      =f.text_field :start_date, class: 'form-control', 'date-time-filter' => ''
-      span.input-group-addon
-        span.glyphicon.glyphicon-calendar
-    =f.ng_messages :start_date
-
-  .form-group
-    =f.label :start_time
-    #start_time_picker.input-group.date
-      =f.text_field :start_time, class: 'form-control', 'date-time-filter' => '', 'ng-required' => '!event.isAllDay', 'ng-disabled' => 'event.isAllDay'
-      span.input-group-addon
-        span.glyphicon.glyphicon-time
-    =f.ng_messages :start_time
-
-  .form-group
-     =f.label :notes
-     =f.text_area :notes, class: 'form-control', rows: 3
-     =f.ng_messages :notes
-
-  =f.submit class:'btn.btn-success'
+=render 'events/event_form'
