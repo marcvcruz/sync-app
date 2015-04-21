@@ -10,7 +10,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new event_params.merge!(:organizer_id, current_user.id)
+    @event = Event.new event_params.merge!(organizer_id: current_user.id)
     if @event.valid? and @event.save
       flash.now[:notice] = t :event_successfully_created
       redirect_to :events and return
