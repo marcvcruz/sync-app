@@ -44,15 +44,25 @@ RSpec.describe EventsController, type: :controller do
     let(:event) { FactoryGirl.create :event }
 
     it 'returns http success' do
-      get :update, id: event.id, event: { is_all_day: true, description: 'New description', notes: 'New note'  }
+      put :update, id: event.id, event: { is_all_day: true, description: 'New description', notes: 'New note'  }
       updated_event =  assigns(:event)
       expect(updated_event).to_not be_nil
       expect(updated_event.is_all_day).to eql true
       expect(updated_event.description).to eql 'New description'
       expect(updated_event.notes).to eql 'New note'
       expect(response).to have_http_status(302)
-      expect(response).to redirect_to events_path
+      expect(response).to redirect_to :events
     end
   end
 
+  describe 'DELETE #destroy' do
+    let(:event) { FactoryGirl.create :event }
+
+    it 'deletes the event from the table' do
+      delete :destroy, id: event.id
+      expect(response).to have_http_status 302
+      expect(response).to redirect_to :events
+      expect(Event.exists? event.id).to be false
+    end
+  end
 end

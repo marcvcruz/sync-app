@@ -72,3 +72,4 @@ en:
   is_all_day: All day event?
   notes: Notes
   event_successfully_created: Your event was successfully created.
+  event_successfully_deleted: Your event was successfylly deleted.

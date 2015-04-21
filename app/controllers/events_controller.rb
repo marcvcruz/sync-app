@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_filter :get_event, only: [:edit, :update]
+  before_filter :get_event, only: [:edit, :update, :delete]
 
   def index
     @events = Event.all
@@ -29,6 +29,12 @@ class EventsController < ApplicationController
     end
     flash.now[:alert] = t :error_occurred_processing_last_request
     render :edit
+  end
+
+  def destroy
+    Event.destroy params[:id]
+    flash[:notice] = t :event_successfully_deleted
+    redirect_to :events and return
   end
 
   private
