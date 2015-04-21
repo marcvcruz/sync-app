@@ -3,6 +3,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require angular
+//= require angular-messages
+//= require sync
 //= require bootstrap-sprockets
 //= require moment
 //= require bootstrap-datetimepicker
@@ -10,5 +13,6 @@
 //= require angular-messages
 //= require bootstrap-sprockets
 //= require angular_validations
+//= require ui-components
 //= require date_time_filter
 //= require_tree .

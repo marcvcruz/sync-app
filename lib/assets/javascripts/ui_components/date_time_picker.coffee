@@ -1,20 +1,26 @@
-angular.module('uiControls').directive 'dateTimePicker', ($parse) ->
-  priority: -1
-  require: 'ngModel'
-  restrict: 'A'
-  link: (scope, element, attrs, ngModel) ->
-    config =
-      format: 'L'
-      keepInvalid: true
-      useCurrent: false
-      keepOpen: false
-    element.datetimepicker config
-    input = element.find('input:first')
-    throw 'datetimepicker requires an input child element' unless input?
-    ngModel = input.controller('ngModel')
-    element.on 'dp.change', (e) ->
-      ngModel.$setViewValue e.date?.format('MM/DD/YYYY') #need to set view value to the formatted version
-      scope.$apply()
+angular.module('uiComponents').directive 'dateTimePicker', () ->
+  require: '?ngModel',
+  restrict: 'AE',
+  priority: -1,
+  scope: {
+    format: '=',
+    value: '='
+  },
+  link: (scope, elem) ->
+    picker =
+      elem.datetimepicker({ useCurrent: false, keepInvalid: true, sideBySide: true, useStrict: true }).data 'DateTimePicker'
 
-    scope.$watch attrs.ngModel, (newValue, oldValue) ->
-      element.datetimepicker().date(newValue) if angular.isDate(newValue) # need to set the datepicker to the formatted version
+    input = if (elem.is 'input') then elem else elem.find('input:first')
+    input.attr('placeholder', scope.format)
+
+    elem.on 'dp.change', (e) ->
+      scope.value = e.date?.format(scope.format)
+
+    scope.$watch 'format', (newValue) ->
+      input.attr('placeholder', scope.format)
+      picker.format(newValue) if newValue?
+
+    scope.$watch 'value', (newValue) ->
+      momentDate = if newValue? then moment(newValue, scope.format, true) else null
+      picker.date momentDate
+
