@@ -18,27 +18,19 @@ RSpec.describe Event, type: :model do
       .to change(event, :valid?).from(true).to(false)
   end
 
-  it 'requires a start date' do
-    expect { event.start_date = nil }.to change(event, :valid?).from(true).to(false)
+  it 'requires a starting date' do
+    expect { event.starting_at = nil }.to change(event, :valid?).from(true).to(false)
   end
 
   context 'all day event' do
     before :each do
       event.is_all_day = true
     end
-
-    it 'does not require a start time' do
-      expect { event.start_time = nil }.to_not change(event, :valid?)
-    end
   end
 
   context 'not an all day event' do
     before :each do
       event.is_all_day = false
-    end
-
-    it 'requires a start time' do
-      expect { event.start_time = nil }.to change(event, :valid?).from(true).to(false)
     end
   end
 end
