@@ -12,7 +12,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new event_params.merge!(organizer_id: current_user.id)
     if @event.valid? and @event.save
-      flash.now[:notice] = t :event_successfully_created
+      flash[:notice] = t :event_successfully_created
       redirect_to :events and return
     end
     flash.now[:alert] = t :error_occurred_processing_last_request
@@ -24,7 +24,7 @@ class EventsController < ApplicationController
 
   def update
     if @event.update_attributes event_params
-      flash.now[:notice] = t :event_successfully_updated
+      flash[:notice] = t :event_successfully_updated
       redirect_to :events and return
     end
     flash.now[:alert] = t :error_occurred_processing_last_request
