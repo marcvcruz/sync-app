@@ -6,12 +6,16 @@
 
   .checkbox
     label
-      =f.check_box :is_all_day
+      =f.check_box :is_all_day, 'ng-change' => "dateTimeFormat = event.isAllDay ? 'YYYY-MM-DD' : 'YYYY-MM-DD hh:mm A'"
       =t :is_all_day
 
   .form-group
     =f.label :starting_at
-    =f.datetime_select :starting_at
+    =f.datetime_select :starting_at,
+                       ng_model: 'event.startingAt',
+                       format: 'dateTimeFormat',
+                       value: 'event.startingAt',
+                       ng_init: "dateTimeFormat = '#{@event.is_all_day? ? 'YYYY-MM-DD' : 'YYYY-MM-DD hh:mm A'}'"
     =f.ng_messages :starting_at
 
   .form-group
