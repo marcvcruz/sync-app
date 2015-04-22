@@ -11,11 +11,10 @@ module ActionView
       end
 
       def datetime_select(method, options = {}, html_options = {})
-        existing_time = @object.send(method) unless @object.nil?
-        options[:value] ||= existing_time.to_time.strftime('%F %I:%M %p') if existing_time.present?
-
-        @template.content_tag(:div, id: "#{object_name}_#{method}_container", class: 'input-group', 'date-time-picker' => '', format: options[:format], value: options[:value], 'ng-init' => options[:ng_init]) do
-          text_field(method, class: 'form-control') +
+        options[:class] = "#{options[:class]} input-group"
+        options[:'date-time-picker'] = ''
+        @template.content_tag(:div, options) do
+          text_field(method, class: 'form-control', 'ng-init' => 'angular.noop()', 'ng-model-options' => "{ updateOn: 'default' }" ) +
               @template.content_tag(:span, @template.content_tag(:span, '', class: 'glyphicon glyphicon-calendar') ,class: 'input-group-addon')
         end
       end
