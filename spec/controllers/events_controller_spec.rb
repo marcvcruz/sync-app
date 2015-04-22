@@ -41,11 +41,11 @@ RSpec.describe EventsController, type: :controller do
   end
 
   describe 'PUT #update' do
-    let(:event) { FactoryGirl.create :event }
+    let(:event) { FactoryGirl.create :event, is_all_day: false, description: 'Original description', notes: 'Original notes' }
 
-    it 'returns http success' do
+    it 'updates the event' do
       put :update, id: event.id, event: { is_all_day: true, description: 'New description', notes: 'New note'  }
-      updated_event =  assigns(:event)
+      updated_event =  Event.find(event.id)
       expect(updated_event).to_not be_nil
       expect(updated_event.is_all_day).to eql true
       expect(updated_event.description).to eql 'New description'
