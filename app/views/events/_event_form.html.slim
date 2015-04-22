@@ -1,26 +1,28 @@
 =form_for @event, builder: AngularValidation::FormBuilder do |f|
   .form-group
     =f.label :description
-    =f.text_field :description, class: 'form-control'
+    =f.text_field :description, class: 'form-control', placeholder: t(:enter_a_description)
     =f.ng_messages :description
 
   .checkbox
     label
-      =f.check_box :is_all_day, 'ng-change' => "dateTimeFormat = event.isAllDay ? 'YYYY-MM-DD' : 'YYYY-MM-DD hh:mm A'"
+      =f.check_box :is_all_day
       =t :is_all_day
 
   .form-group
     =f.label :starting_at
     =f.datetime_select :starting_at,
-                       ng_model: 'event.startingAt',
-                       format: 'dateTimeFormat',
-                       value: 'event.startingAt',
-                       ng_init: "dateTimeFormat = '#{@event.is_all_day? ? 'YYYY-MM-DD' : 'YYYY-MM-DD hh:mm A'}'"
+                       :'data-date-format' => "{{ event.isAllDay ? 'YYYY-MM-DD' : 'YYYY-MM-DD hh:mm A' }}",
+                       :'data-date-use-current' => false,
+                       :'data-date-keep-invalid' => true,
+                       :'data-date-side-by-side' => true,
+                       :'data-date-use-strict' => true,
+                       :'data-date-date' => "#{@event.starting_at}"
     =f.ng_messages :starting_at
 
   .form-group
     =f.label :notes
-    =f.text_area :notes, class: 'form-control', rows: 3
+    =f.text_area :notes, class: 'form-control', rows: 3, placeholder: t(:enter_event_notes)
     =f.ng_messages :notes
 
   =f.submit class:'btn.btn-success'

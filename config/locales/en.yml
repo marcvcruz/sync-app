@@ -15,6 +15,7 @@ en:
   profile: Profile
   new_user: New user
   first_name: First name
+  enter_a_description: Enter a description
   last_name: Last name
   email: Email
   is_admin: Make user an admin?
@@ -54,6 +55,7 @@ en:
   starting_at: Starting at
   is_all_day: All day event?
   notes: Notes
+  enter_event_notes: Enter notes
   errors:
     messages:
       field_is_required: This field is required
@@ -73,3 +75,4 @@ en:
   notes: Notes
   event_successfully_created: Your event was successfully created.
   event_successfully_deleted: Your event was successfylly deleted.
+  event_successfully_updated: Your event was successfully updated.
