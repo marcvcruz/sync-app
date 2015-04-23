@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_filter :get_event, only: [:edit, :update, :delete]
 
   def index
-    @events = Event.all
+    @events = Event.order(starting_at: :desc)
   end
 
   def new
