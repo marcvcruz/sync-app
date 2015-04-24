@@ -1,0 +1,19 @@
+h1 Events
+
+table.table.table-hover
+  thead
+    tr
+      td =t :description
+      td =t :starting_at
+
+  tbody
+    -@events.each do |event|
+      tr.table-hover
+        td
+          =link_to event.description, edit_event_path(event.id)
+
+        td
+          -if event.is_all_day?
+            =event.starting_at.strftime '%b %-d, %Y'
+          -else
+            =event.starting_at.strftime '%b %-d, %Y at %l:%M %P'

@@ -3,33 +3,39 @@ require 'angular_validation/validators'
 module AngularValidation
   module FormBuilderExtensions
 
-    # def check_box(method, options = {}, checked_value = "1", unchecked_value = "0")
-    #   add_options method, options
-    #   checked = options[:checked]
-    #   init_model_value checked_value, options if checked
-    #   super
-    # end
-    #
-    # def radio_button(method, tag_value, options={})
-    #   add_options method, options
-    #   checked = options[:checked]
-    #   options['value'] = tag_value
-    #   init_model_value tag_value, options if checked
-    #   super
-    # end
-    #
+    def check_box(method, options = {}, checked_value="1", unchecked_value="0")
+      add_options method, options
+      init_model_value @object.send(method), options
+      super
+    end
+
+    def radio_button(method, tag_value, options={})
+      add_options method, options
+      checked = options[:checked]
+      options['value'] = tag_value
+      init_model_value tag_value, options if checked
+      super
+    end
+
     def password_field(method, options = {})
       add_options method, options
       add_model_options options
       super
     end
-    #
-    # def text_area(method, options = {})
-    #   add_options method, options
-    #   value = @object.send method
-    #   init_model_value value, options if value
-    #   super
-    # end
+
+    def hidden_field(method, options = {})
+      add_options method, options
+      value = @object.send method unless @object.nil?
+      init_model_value value, options if value
+      super
+    end
+
+    def text_area(method, options = {})
+      add_options method, options
+      value = @object.send method unless @object.nil?
+      init_model_value value, options if value
+      super
+    end
 
     def text_field(method, options = {})
       add_options method, options
@@ -57,7 +63,8 @@ module AngularValidation
 
     def init_model_value(value, options)
       ng_model = options['ng-model']
-      options['ng-init'] ||= "#{ng_model} = '#{value}'"
+      value = "'#{value.to_s.gsub(/[\047\042]/, "\\\\\\0")}'" if value.is_a? String or value.respond_to? :to_time
+      options['ng-init'] ||= "#{ng_model} = #{value}"
     end
 
     def add_options(method, options)

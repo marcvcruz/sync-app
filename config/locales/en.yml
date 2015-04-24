@@ -15,6 +15,7 @@ en:
   profile: Profile
   new_user: New user
   first_name: First name
+  enter_a_description: Enter a description
   last_name: Last name
   email: Email
   is_admin: Make user an admin?
@@ -42,10 +43,19 @@ en:
       user:
         create: Create new user
         update: Update user
+      event:
+        create: Create new event
+        update: Update event
   user_mailer:
     password_reset:
       subject: Password reset
   choose_a_new_password: Choose a new password and enter it below.
+  new_event: New event
+  description: Description
+  starting_at: Starting at
+  is_all_day: All day event?
+  notes: Notes
+  enter_event_notes: Enter notes
   errors:
     messages:
       field_is_required: This field is required
@@ -57,3 +67,12 @@ en:
       passwords_do_not_match: Passwords do not match
       no_spaces_or_special_characters: Usernames can not have spaces or special characters
       wrong_password: Oops! You entered the wrong password.
+  new_event: New event
+  description: Description
+  start_date: Start date
+  start_time: Start time
+  is_all_day: All day event?
+  notes: Notes
+  event_successfully_created: Your event was successfully created.
+  event_successfully_deleted: Your event was successfylly deleted.
+  event_successfully_updated: Your event was successfully updated.

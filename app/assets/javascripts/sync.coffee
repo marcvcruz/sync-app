@@ -1,2 +1,2 @@
-@Sync = angular.module("SyncApp", ['ngMessages', 'angularValidation'])
+@Sync = angular.module("SyncApp", ['ngMessages', 'angularValidation', 'components', 'uiComponents' ])
 

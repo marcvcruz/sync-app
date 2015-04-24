@@ -4,6 +4,7 @@ require 'angular_validation/form_builder_extensions'
 module AngularValidation
   class FormBuilder < ActionView::Helpers::FormBuilder
     prepend AngularValidation::FormBuilderExtensions
+    include ActionView::Helpers::TagHelper
 
     def initialize(object_name, object, template, options)
       options[:html] ||= {}

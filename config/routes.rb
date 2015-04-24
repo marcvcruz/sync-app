@@ -12,9 +12,10 @@ Rails.application.routes.draw do
   match '/sign-in' => 'session#create', via: :post, as: :authenticate
   match '/sign-out' => 'session#destroy', via: :get, as: :sign_out
 
-  resources :users
-
   match '/calendar' => 'calendar#show', via: :get, as: :calendar
 
   match '/api/username-uniqueness' => 'api#username_uniqueness', via: :get
+
+  resources :users
+  resources :events
 end
