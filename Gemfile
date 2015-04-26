@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.org'
 
 gem 'rails', '4.2.0'
 gem 'bootstrap-sass', '~> 3.3.3'
@@ -9,9 +8,9 @@ gem 'slim-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
-gem 'rails-assets-angular', '~> 1.3.0-rc.1'
-gem 'rails-assets-angular-messages', '~> 1.3.0-rc.1'
-gem 'rails-assets-angular-mocks', '~> 1.3.0-rc.1'
+gem 'rails-assets-angular', source: 'https://rails-assets.org'
+gem 'rails-assets-angular-messages', source: 'https://rails-assets.org'
+gem 'rails-assets-angular-mocks', source: 'https://rails-assets.org'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
