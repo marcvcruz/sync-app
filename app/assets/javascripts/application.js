@@ -14,5 +14,4 @@
 //= require bootstrap-sprockets
 //= require angular_validations
 //= require ui-components
-//= require date_time_filter
 //= require_tree .
