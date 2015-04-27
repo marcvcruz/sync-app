@@ -10,6 +10,6 @@ class CreateEvents < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_index :events, :starting_at
-    add_foreign_key :events, :organizer_ids
+    add_foreign_key :events, :users, column: :organizer_id, primary_key: "id"
   end
 end
