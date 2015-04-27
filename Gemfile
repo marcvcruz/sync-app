@@ -36,6 +36,8 @@ group :development, :test do
   gem 'faker'
   gem 'database_cleaner'
   gem 'pry'
+  gem 'teaspoon'
+  gem 'teaspoon-jasmine', github: 'modeset/teaspoon'
 end
 
 group :production do

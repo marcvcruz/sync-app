@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/modeset/teaspoon.git
+  revision: 408b20b2c6abae3eab6cf267feffc0385112b35b
+  specs:
+    teaspoon (0.9.1)
+      railties (>= 3.2.5, < 5)
+    teaspoon-jasmine (2.2.0)
+      teaspoon (>= 0.9.0)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -243,6 +252,8 @@ DEPENDENCIES
   slim-rails
   spring
   sqlite3
+  teaspoon
+  teaspoon-jasmine!
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
