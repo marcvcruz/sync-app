@@ -7,9 +7,7 @@ RSpec.describe UsersController, type: :controller do
     }
 
     it 'redirects to the homepage' do
-      current_user.remember
-      cookies.signed[:user_id] = current_user.id
-      cookies.signed[:remember_token] = current_user.remember_token
+      controller.instance_variable_set :@current_user, current_user
       get :index
       expect(response).to redirect_to(root_path)
     end
@@ -21,9 +19,7 @@ RSpec.describe UsersController, type: :controller do
     }
 
     before :each do
-      current_user.remember
-      cookies.signed[:user_id] = current_user.id
-      cookies.signed[:remember_token] = current_user.remember_token
+      controller.instance_variable_set :@current_user, current_user
     end
 
     describe '#index' do
