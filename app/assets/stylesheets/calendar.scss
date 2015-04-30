@@ -17,7 +17,6 @@ table.calendar-body {
       td {
         height: 150px;
         width: 180px;
-        text-align: right;
 
         &.prev-month, &.next-month {
           color: gray;
@@ -27,8 +26,43 @@ table.calendar-body {
           background: #e2e2e2;
         }
 
-        &.today {
-          background: #8daad1;
+        .calendar-day {
+          width: 160px;
+          text-align: right;
+
+          > span {
+            display: inline;
+            font-weight: bold;
+            border: 1px solid black;
+            padding: 5px;
+          }
+
+          .event {
+            font-size: 13px;
+            margin: 5px 0;
+            text-align: start;
+            @include ellipsis;
+
+            a {
+              color: black;
+
+              &:hover {
+                text-decoration: none;
+              }
+
+              .start-time {
+                display: inline-block;
+                font-weight: 500;
+
+              }
+
+              .description {
+                @include ellipsis;
+                display: inline;
+                font-weight: 200;
+              }
+            }
+          }
         }
       }
     }
