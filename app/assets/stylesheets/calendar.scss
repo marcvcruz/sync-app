@@ -43,6 +43,11 @@ table.calendar-body {
             text-align: start;
             @include ellipsis;
 
+            &.all-day {
+              margin: 5px auto;
+              width: 80%;
+            }
+
             a {
               color: black;
 
