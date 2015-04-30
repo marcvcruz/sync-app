@@ -1,3 +1,13 @@
-=month_calendar table: { class: "calendar-body table table-bordered" } do |date|
-  span
-    =date.strftime('%e')
+=month_calendar table: { class: 'calendar-body table table-bordered' } do |date|
+  .calendar-day ng-controller="CalendarDayController" ng-init="init('#{date.to_s}')"
+    .date-label
+      span
+        =date.strftime('%e')
+
+    -events_on(date).each do |event|
+      div.event class=('all-day' if event.is_all_day?)
+       a href="#{edit_event_path(event.id)}"
+          .start-time
+            =event.starting_time
+          .description
+            =event.description
