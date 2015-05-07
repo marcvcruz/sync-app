@@ -18,7 +18,7 @@ module SessionHelper
 
   def current_user
     @current_user ||= if user_id = cookies.signed[:user_id]
-                        user = User.find_by(user_id)
+                        user = User.find_by id: user_id
                         user if user and user.authenticated? :remember, cookies.signed[:remember_token]
                       end
   end
