@@ -8,6 +8,6 @@
       div.event class=('all-day' if event.is_all_day?)
        a href="#{edit_event_path(event.id)}"
           .start-time
-            =event.starting_time
+            =event.starting_at.strftime('%l:%M%P') unless event.is_all_day?
           .description
             =event.description

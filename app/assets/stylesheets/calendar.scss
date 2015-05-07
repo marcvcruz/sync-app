@@ -16,7 +16,7 @@ table.calendar-body {
     tr {
       td {
         height: 130px;
-        width: 180px;
+        width: 145px;
 
         &.prev-month, &.next-month {
           color: gray;
@@ -27,14 +27,11 @@ table.calendar-body {
         }
 
         .calendar-day {
-          width: 160px;
+          width: 145px;
           text-align: right;
 
-          > span {
-            display: inline;
+          .date-label {
             font-weight: bold;
-            border: 1px solid black;
-            padding: 5px;
           }
 
           .event {
@@ -45,7 +42,7 @@ table.calendar-body {
 
             &.all-day {
               margin: 5px auto;
-              width: 80%;
+              width: 95%;
             }
 
             a {

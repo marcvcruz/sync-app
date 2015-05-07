@@ -11,14 +11,14 @@
 
   .form-group
     =f.label :starting_at
-    =f.datetime_select :starting_at,
+    =f.datetime_select :starting_date_time,
                        :'data-date-format' => "{{ event.isAllDay ? 'YYYY-MM-DD' : 'YYYY-MM-DD hh:mm A' }}",
                        :'data-date-use-current' => false,
                        :'data-date-keep-invalid' => true,
                        :'data-date-side-by-side' => true,
                        :'data-date-use-strict' => true,
-                       :'data-date-date' => "#{@event.starting_at}"
-    =f.ng_messages :starting_at
+                       :'data-date-date' => "#{@event.starting_date_time}"
+    =f.ng_messages :starting_date_time
 
   .form-group
     =f.label :notes
