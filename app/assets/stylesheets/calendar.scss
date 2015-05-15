@@ -19,15 +19,17 @@ table.calendar-body {
     tr {
       td {
         @media (max-width: $screen-sm-min) {
-          width: 52px;
           height: 52px;
+          .event {
+            display: none;
+          }
         }
         @media (min-width: $screen-sm-min) {
-          width: 100px;
+          width: 102px;
           height: 90px;
         }
         @media (min-width: $screen-md-min) {
-          width: 125px;
+          width: 133px;
           height: 95px;
         }
         @media (min-width: $screen-lg-min) {
@@ -53,6 +55,7 @@ table.calendar-body {
               font-weight: bold;
               float: right;
               margin-bottom: 2px;
+              margin-right: 4px;
             }
 
             .event {
