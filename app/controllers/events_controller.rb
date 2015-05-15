@@ -40,7 +40,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:description, :is_all_day, :starting_date_time, :ending_date_time, :notes)
+    params.require(:event).permit(:description, :is_all_day, :starting_on, :starting_at, :notes)
   end
 
   def get_event

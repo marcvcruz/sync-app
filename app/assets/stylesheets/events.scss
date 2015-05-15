@@ -1,3 +1,16 @@
-// Place all the styles related to the events controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#starting_date_time {
+  .form-inline {
+    #start_date_container, #start_time_container {
+      display: inline-block;
+      vertical-align: top;
+
+      input {
+        width: 135px;
+      }
+
+      ng-messages {
+        display: block;
+      }
+    }
+  }
+}
