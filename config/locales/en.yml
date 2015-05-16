@@ -38,6 +38,7 @@ en:
   password_successfully_changed: Your password was successfully changed.
   blog: Blog
   calendar: Calendar
+  when: When
   helpers:
     submit:
       user:
@@ -52,7 +53,7 @@ en:
   choose_a_new_password: Choose a new password and enter it below.
   new_event: New event
   description: Description
-  starting_at: Starting at
+  starting_on: Starting on
   is_all_day: All day event?
   notes: Notes
   enter_event_notes: Enter notes
@@ -68,9 +69,8 @@ en:
       no_spaces_or_special_characters: Usernames can not have spaces or special characters
       wrong_password: Oops! You entered the wrong password.
   new_event: New event
+  update_event: Update event
   description: Description
-  start_date: Start date
-  start_time: Start time
   is_all_day: All day event?
   notes: Notes
   event_successfully_created: Your event was successfully created.

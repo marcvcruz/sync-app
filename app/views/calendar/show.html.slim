@@ -6,8 +6,9 @@
 
     -events_on(date).each do |event|
       div.event class=('all-day' if event.is_all_day?)
-       a href="#{edit_event_path(event.id)}"
-          .start-time
-            =event.starting_time
+        a href="#{edit_event_path(event.id)}"
+          -unless event.is_all_day?
+            .start-time
+              =event.starting_at
           .description
             =event.description

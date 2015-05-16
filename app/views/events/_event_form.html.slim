@@ -4,21 +4,26 @@
     =f.text_field :description, class: 'form-control', placeholder: t(:enter_a_description)
     =f.ng_messages :description
 
+  #starting_date_time.form-group
+    =f.label :starting_on
+    .form-inline
+      #start_date_container
+        =f.datetime_select  :starting_on,
+                            :'data-date-format' => 'MM/DD/YYYY',
+                            :'data-date-placeholder' => 'ex: 05/22/2016'
+        =f.ng_messages :starting_on
+      #start_time_container ng-show="!event.isAllDay"
+        =f.datetime_select  :starting_at,
+                            icon_class: 'glyphicon-time',
+                            :'data-date-format' => 'h:mm A',
+                            :'data-date-placeholder' => 'ex: 9:30 am',
+                            'ng-required' => '!event.isAllDay'
+        =f.ng_messages :starting_at
+
   .checkbox
     label
-      =f.check_box :is_all_day
+      =f.check_box :is_all_day, :'ng-click' => "event.startingAt = '12:00 am'"
       =t :is_all_day
-
-  .form-group
-    =f.label :starting_at
-    =f.datetime_select :starting_at,
-                       :'data-date-format' => "{{ event.isAllDay ? 'YYYY-MM-DD' : 'YYYY-MM-DD hh:mm A' }}",
-                       :'data-date-use-current' => false,
-                       :'data-date-keep-invalid' => true,
-                       :'data-date-side-by-side' => true,
-                       :'data-date-use-strict' => true,
-                       :'data-date-date' => "#{@event.starting_at}"
-    =f.ng_messages :starting_at
 
   .form-group
     =f.label :notes

@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_filter :get_event, only: [:edit, :update, :delete]
 
   def index
-    @events = Event.order(starting_at: :desc)
+    @events = Event.order(starting_date_time: :desc)
   end
 
   def new
@@ -40,7 +40,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:description, :is_all_day, :starting_at, :notes)
+    params.require(:event).permit(:description, :is_all_day, :starting_on, :starting_at, :notes)
   end
 
   def get_event

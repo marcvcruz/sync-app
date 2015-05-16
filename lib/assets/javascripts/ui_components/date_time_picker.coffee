@@ -8,7 +8,8 @@ angular.module('uiComponents').directive 'dateTimePicker', () ->
     keepInvalid: "=dateKeepInvalid",
     sideBySide: "=dateSideBySide",
     useStrict: "=dateUseStrict",
-    date: "@dateDate"
+    date: "@dateDate",
+    placeholder: "@datePlaceholder"
   },
   link: (scope, elem) ->
     picker =
@@ -21,26 +22,13 @@ angular.module('uiComponents').directive 'dateTimePicker', () ->
         date: scope.date
       ).data 'DateTimePicker'
 
-    #picker.date(scope.date)
-
     input = if (elem.is 'input') then elem else elem.find('input:first')
-    input.attr('placeholder', scope.format)
+    input.attr('placeholder', scope.placeholder)
     ngModel = input.controller('ngModel')
-    ngModel.$setViewValue(scope.date)
-
-#    ngModel.$parsers.push ->
-#
-#    ngModel.$formatters.push ->
-
     elem.on 'dp.change', (e) ->
       ngModel.$setViewValue e.date?.format(scope.format)
 
-    scope.$watch 'format', (newValue) ->
-      if newValue?
-        input.attr('placeholder', newValue)
-        picker.format(newValue)
-
-#    scope.$watch 'value', (newValue) ->
-#      momentDate = if newValue? then moment(newValue, scope.format, true) else null
-#      picker.date momentDate
+    elem.on 'dp.error', ->
+      ngModel.$setViewValue input.val() unless picker.options['keepInvalid']
+    ngModel.$setViewValue scope.date if angular.isDefined(scope.date)
 

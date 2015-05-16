@@ -8,6 +8,9 @@ header.calendar-header {
 }
 
 table.calendar-body {
+  margin-left: auto;
+  margin-right: auto;
+
   thead {
     background: #3a3636;
     color: #fff;
@@ -15,8 +18,24 @@ table.calendar-body {
   tbody {
     tr {
       td {
-        height: 130px;
-        width: 180px;
+        @media (max-width: $screen-sm-min) {
+          height: 52px;
+          .event {
+            display: none;
+          }
+        }
+        @media (min-width: $screen-sm-min) {
+          width: 102px;
+          height: 90px;
+        }
+        @media (min-width: $screen-md-min) {
+          width: 133px;
+          height: 95px;
+        }
+        @media (min-width: $screen-lg-min) {
+          width: 160px;
+          height: 120px;
+        }
 
         &.prev-month, &.next-month {
           color: gray;
@@ -26,45 +45,49 @@ table.calendar-body {
           background: #e2e2e2;
         }
 
-        .calendar-day {
-          width: 160px;
-          text-align: right;
+        &.day {
+          padding: 0;
 
-          > span {
-            display: inline;
-            font-weight: bold;
-            border: 1px solid black;
-            padding: 5px;
-          }
+          .calendar-day {
+            width: inherit;
 
-          .event {
-            font-size: 13px;
-            margin: 5px 0;
-            text-align: start;
-            @include ellipsis;
-
-            &.all-day {
-              margin: 5px auto;
-              width: 80%;
+            .date-label {
+              font-weight: bold;
+              float: right;
+              margin-bottom: 2px;
+              margin-right: 4px;
             }
 
-            a {
-              color: black;
+            .event {
+              font-size: 13px;
+              margin: 5px;
+              text-align: start;
+              clear: both;
+              @include ellipsis;
 
-              &:hover {
-                text-decoration: none;
+              &.all-day {
+                margin: 5px auto;
+                text-align: center;
               }
 
-              .start-time {
-                display: inline-block;
-                font-weight: 500;
+              a {
+                color: black;
 
-              }
+                &:hover {
+                  text-decoration: none;
+                }
 
-              .description {
-                @include ellipsis;
-                display: inline;
-                font-weight: 200;
+                .start-time {
+                  display: inline-block;
+                  font-weight: 500;
+
+                }
+
+                .description {
+                  @include ellipsis;
+                  display: inline;
+                  font-weight: 200;
+                }
               }
             }
           }

@@ -4,7 +4,7 @@ table.table.table-hover
   thead
     tr
       td =t :description
-      td =t :starting_at
+      td =t :when
 
   tbody
     -@events.each do |event|
@@ -14,6 +14,6 @@ table.table.table-hover
 
         td
           -if event.is_all_day?
-            =event.starting_at.strftime '%b %-d, %Y'
+            =event.starting_date_time.strftime '%b %-d, %Y'
           -else
-            =event.starting_at.strftime '%b %-d, %Y at %l:%M %P'
+            =event.starting_date_time.strftime '%b %-d, %Y at %l:%M %P'
