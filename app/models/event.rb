@@ -7,7 +7,7 @@ class Event < ActiveRecord::Base
   before_save :convert_start_to_datetime
 
   validates_length_of :description, maximum: 100, message: :can_not_exceed_100_characters
-  validates_length_of :notes, maximum: 500, allow_blank: true, message: :can_not_exceed_500_charactersN
+  validates_length_of :notes, maximum: 500, allow_blank: true, message: :can_not_exceed_500_characters
   validates_presence_of :organizer, :description, :starting_on, :starting_at, message: :field_is_required
 
   def starting_on
