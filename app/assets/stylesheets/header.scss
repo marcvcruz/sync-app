@@ -1,12 +1,15 @@
 .header {
-  margin-bottom: 15px;
 
-  .navbar-inverse {
-    border-radius: 0;
+  .navbar {
+    margin-bottom: initial;
 
-    .glyphicon {
-      color: inherit;
-      margin: 0 8px;
+    &.navbar-inverse {
+      border-radius: 0;
+
+      .glyphicon {
+        color: inherit;
+        margin: 0 8px;
+      }
     }
   }
 }
