@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   attr_accessor :starting_on, :starting_at
 
-  scope :all_happening_on, -> date { where('DATE(starting_date_time) = ?', date.to_date) }
+  scope :all_happening_on, -> date { where('starting_date_time BETWEEN ? AND ?', date.beginning_of_day.in_time_zone.utc, date.end_of_day.in_time_zone.utc).all }
   belongs_to :organizer, class_name: User
 
   before_save :convert_start_to_datetime
