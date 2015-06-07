@@ -2,7 +2,11 @@ class EventsController < ApplicationController
   before_filter :get_event, only: [:edit, :update, :delete]
 
   def index
-    @events = Event.order(starting_date_time: :desc)
+    @events = Event.occurring_same_month_as start_date
+    respond_to do |format|
+      format.html
+      format.json { render json: @events }
+    end
   end
 
   def new
@@ -35,6 +39,10 @@ class EventsController < ApplicationController
     Event.destroy params[:id]
     flash[:notice] = t :event_successfully_deleted
     redirect_to :events and return
+  end
+
+  helper_method def start_date
+    Date.civil params[:year].to_i, params[:month].to_i rescue Date.today
   end
 
   private

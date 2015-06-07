@@ -15,7 +15,7 @@ nav.navbar.navbar-inverse
           li
             =link_to t(:blog), '#'
           li
-            =link_to t(:calendar), calendar_path
+            =link_to t(:calendar), monthly_calendar_path
       ul.nav.navbar-nav.navbar-right
         -if current_user
           li.dropdown
@@ -24,7 +24,7 @@ nav.navbar.navbar-inverse
               ="#{current_user.first_name}"
               span.caret
             ul.dropdown-menu role='menu'
-              -if current_user.is_admin
+              -if current_user.is_admin?
                 li
                   =link_to t(:create_user), new_user_path
                 li

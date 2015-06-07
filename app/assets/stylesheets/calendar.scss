@@ -27,14 +27,26 @@ table.calendar-body {
         @media (min-width: $screen-sm-min) {
           width: 102px;
           height: 90px;
+
+          .events {
+            height: 70px;
+          }
         }
         @media (min-width: $screen-md-min) {
           width: 133px;
           height: 95px;
+
+          .events {
+            height: 75px;
+          }
         }
         @media (min-width: $screen-lg-min) {
           width: 160px;
-          height: 120px;
+          height: 135px;
+
+          .events {
+            height: 115px;
+          }
         }
 
         &.prev-month, &.next-month {
@@ -48,39 +60,51 @@ table.calendar-body {
         &.day {
           padding: 0;
 
-          .calendar-day {
+          .summary {
             width: inherit;
+            height: inherit;
 
-            .date-label {
-              font-weight: bold;
-              float: right;
-              margin-bottom: 2px;
-              margin-right: 4px;
-            }
+            > a { color: black; }
+            .calendar-day {
+              width: inherit;
+              height: inherit;
+              overflow: hidden;
+              text-overflow: clip;
+              white-space: nowrap;
 
-            .event {
-              font-size: 13px;
-              margin: 5px;
-              text-align: start;
-              clear: both;
-              @include ellipsis;
-
-              &.all-day {
-                margin: 5px auto;
-                text-align: center;
+              .date-label {
+                font-weight: bold;
+                float: right;
+                margin: 2px 4px 2px 2px;
+                line-height: 1.0;
               }
 
-              a {
-                color: black;
+              .event {
+                font-size: 13px;
+                margin: 2px 0px 4px 3px;
+                text-align: start;
+                line-height: 1;
+                clear: both;
+                @include ellipsis;
 
-                &:hover {
-                  text-decoration: none;
+                &.all-day {
+                  text-align: center;
+                }
+
+                a {
+                  color: black;
+
+                  &:hover {
+                    text-decoration: none;
+                  }
                 }
 
                 .start-time {
                   display: inline-block;
                   font-weight: 500;
-
+                  span {
+                    white-space: pre;
+                  }
                 }
 
                 .description {
@@ -90,6 +114,7 @@ table.calendar-body {
                 }
               }
             }
+
           }
         }
       }

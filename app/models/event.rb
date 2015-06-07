@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   attr_accessor :starting_on, :starting_at
 
-  scope :all_happening_on, -> date { where('starting_date_time BETWEEN ? AND ?', date.beginning_of_day.in_time_zone.utc, date.end_of_day.in_time_zone.utc).all }
+  scope :occurs_in, -> date { where('starting_date_time BETWEEN ? AND ?', date.beginning_of_month.beginning_of_week.beginning_of_day.utc, date.end_of_month.end_of_week.end_of_day.utc).all }
   belongs_to :organizer, class_name: User
 
   before_save :convert_start_to_datetime
@@ -29,5 +29,9 @@ class Event < ActiveRecord::Base
 
   private def convert_to_date_time(date, time)
     Time.strptime date + ' ' + time, Date::DATE_FORMATS[:datetime_input_field]
+  end
+
+  def self.occurring_same_month_as(date)
+    Event.occurs_in(date).group_by { |ev| ev.starting_date_time.to_date.to_s }
   end
 end
