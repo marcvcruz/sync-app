@@ -30,4 +30,4 @@
     =f.text_area :notes, class: 'form-control', rows: 3, placeholder: t(:enter_event_notes)
     =f.ng_messages :notes
 
-  =f.submit class:'btn.btn-success'
+  =f.submit class:'btn.btn-success', 'ng-disabled' => '$submitted'
