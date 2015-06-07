@@ -4,15 +4,15 @@
     =t :new_event
   .add-activity
 
-=month_calendar start_date: start_date, previous_link: previous_link, next_link: next_link, td: td_options, table:  table_options do |date|
+=month_calendar start_date: start_date, previous_link: previous_link, next_link: next_link, td: td_options, table: table_options do |date|
   section.summary
     .calendar-day
       .date-label
         span
           =date.strftime('%e')
       section.events
-        .event ng-repeat="event in events['#{date}']"
-          a href="#{events_path('{{event.id }}')}"
+        .event ng-repeat="event in eventsThisMonth['#{date}']"
+          a ng-href='/events/{{event.id}}/edit'
             .start-time ng-if="!event.isAllDay"
               span
                 '{{ event.startingAt }}

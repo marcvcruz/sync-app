@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   attr_accessor :starting_on, :starting_at
+  delegate :year, :month, to: :starting_date_time
 
   scope :occurs_in, -> date { where('starting_date_time BETWEEN ? AND ?', date.beginning_of_month.beginning_of_week.beginning_of_day.utc, date.end_of_month.end_of_week.end_of_day.utc).all }
   belongs_to :organizer, class_name: User

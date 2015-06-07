@@ -2,10 +2,10 @@ angular.module('SyncApp').controller 'MonthlyCalendarController', ['$scope', '$h
 
   $scope.init = (date) ->
     startDate = moment(date)
-    $http.get "/calendar/#{startDate.year()}/#{startDate.month() + 1}",
+    $http.get "/calendar/#{startDate.year()}/#{startDate.month() + 1}.json",
       headers: 'Accept': 'application/json'
     .success (data) ->
-      $scope.events = data
+      $scope.eventsThisMonth = data
     .error (e) ->
       console.log 'An error occured.'
 

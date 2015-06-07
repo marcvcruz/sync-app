@@ -51,7 +51,7 @@ RSpec.describe EventsController, type: :controller do
       expect(updated_event.description).to eql 'New description'
       expect(updated_event.notes).to eql 'New note'
       expect(response).to have_http_status(302)
-      expect(response).to redirect_to :events
+      expect(response).to redirect_to events_path(updated_event.year, updated_event.month)
     end
   end
 

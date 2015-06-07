@@ -29,7 +29,7 @@ class EventsController < ApplicationController
   def update
     if @event.update_attributes event_params
       flash[:notice] = t :event_successfully_updated
-      redirect_to :events and return
+      redirect_to monthly_calendar_path(@event.year, @event.month) and return
     end
     flash.now[:alert] = t :error_occurred_processing_last_request
     render :edit
