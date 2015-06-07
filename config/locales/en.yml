@@ -55,6 +55,7 @@ en:
   description: Description
   starting_on: Starting on
   is_all_day: All day event?
+  all_day: All day
   notes: Notes
   enter_event_notes: Enter notes
   errors:
