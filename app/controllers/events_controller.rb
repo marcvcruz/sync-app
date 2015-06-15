@@ -42,7 +42,9 @@ class EventsController < ApplicationController
   end
 
   helper_method def start_date
-    Date.civil params[:year].to_i, params[:month].to_i rescue Date.today
+    Date.civil params[:year].to_i, params[:month].to_i
+  rescue
+    Date.today
   end
 
   private

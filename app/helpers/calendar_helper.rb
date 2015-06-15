@@ -8,7 +8,7 @@ module CalendarHelper
   end
 
   def table_options
-    { class: 'calendar-body table table-bordered', 'ng-controller' => 'MonthlyCalendarController', 'ng-init' => "init('#{start_date.to_s}')" }
+    { :class => 'calendar-body table table-bordered', 'ng-controller' => 'MonthlyCalendarController', 'ng-init' => "init('#{start_date.to_s}')", 'ng-cloak' => '' }
   end
 
   def td_options

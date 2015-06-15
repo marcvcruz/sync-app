@@ -12,6 +12,27 @@ RSpec.describe EventsController, type: :controller do
       get :index
       expect(response).to have_http_status :success
     end
+
+    context 'json format specified' do
+      let(:params) {
+        { format: 'json' }
+      }
+
+      context 'with no additional parameters' do
+        it 'uses the current month to query for events' do
+          get :index, params
+          expect(controller.start_date).to eql(Date.today)
+        end
+      end
+
+      context 'with year and month specified in parameters' do
+        it 'uses the specified month and year to query for events' do
+          params.merge! month: 4, year: 2017
+          get :index, params
+          expect(controller.start_date).to eql(Date.parse '2017-04-01')
+        end
+      end
+    end
   end
 
   describe 'GET #new' do
@@ -51,7 +72,7 @@ RSpec.describe EventsController, type: :controller do
       expect(updated_event.description).to eql 'New description'
       expect(updated_event.notes).to eql 'New note'
       expect(response).to have_http_status(302)
-      expect(response).to redirect_to events_path(updated_event.year, updated_event.month)
+      expect(response).to redirect_to monthly_calendar_path(updated_event.year, updated_event.month)
     end
   end
 
