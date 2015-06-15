@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_filter :get_event, only: [:edit, :update, :delete]
 
   def index
-    @events = Event.occurring_same_month_as start_date
+    @events = Event.occurs_in start_date
     respond_to do |format|
       format.html
       format.json { render json: @events, each_serializer: EventSerializer, root: false }

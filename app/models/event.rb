@@ -31,8 +31,4 @@ class Event < ActiveRecord::Base
   private def convert_to_date_time(date, time)
     Time.strptime date + ' ' + time, Date::DATE_FORMATS[:datetime_input_field]
   end
-
-  def self.occurring_same_month_as(date)
-    Event.occurs_in(date).group_by { |ev| ev.starting_date_time.to_date.to_s }
-  end
 end

@@ -11,8 +11,8 @@
         span
           =date.strftime('%e')
       section.events
-        .event ng-repeat="event in eventsThisMonth['#{date}']"
-          a ng-href='/events/{{event.id}}/edit'
+        .event ng-class="{'all-day': event.isAllDay }" ng-repeat="event in eventsOn('#{date}')"
+          a ng-href='/events/{{ event.id }}/edit'
             .start-time ng-if="!event.isAllDay"
               span
                 '{{ event.startingTime }}
