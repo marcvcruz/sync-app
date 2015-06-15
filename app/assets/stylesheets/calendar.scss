@@ -75,13 +75,13 @@ table.calendar-body {
               .date-label {
                 font-weight: bold;
                 float: right;
-                margin: 2px 4px 2px 2px;
+                margin: 6px 4px 9px 4px;
                 line-height: 1.0;
               }
 
               .event {
                 font-size: 13px;
-                margin: 2px 0px 4px 3px;
+                margin: 6px 2px;
                 text-align: start;
                 line-height: 1;
                 clear: both;
@@ -102,9 +102,8 @@ table.calendar-body {
                 .start-time {
                   display: inline-block;
                   font-weight: 500;
-                  span {
-                    white-space: pre;
-                  }
+                  width: 58px;
+                  text-align: right;
                 }
 
                 .description {
