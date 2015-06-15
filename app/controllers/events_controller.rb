@@ -5,7 +5,7 @@ class EventsController < ApplicationController
     @events = Event.occurring_same_month_as start_date
     respond_to do |format|
       format.html
-      format.json { render json: @events }
+      format.json { render json: @events, each_serializer: EventSerializer, root: false }
     end
   end
 
