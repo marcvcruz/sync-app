@@ -5,7 +5,7 @@ class EventsController < ApplicationController
     @events = Event.occurs_in start_date
     respond_to do |format|
       format.html
-      format.json { render json: @events, each_serializer: EventSerializer, root: false }
+      format.json { render json: @events, each_serializer: EventSummarySerializer, root: false }
     end
   end
 
@@ -24,12 +24,19 @@ class EventsController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.html
+      format.json { render json: @event, serializer: EventSerializer, root: false}
+    end
   end
 
   def update
     if @event.update_attributes event_params
       flash[:notice] = t :event_successfully_updated
-      redirect_to monthly_calendar_path(@event.year, @event.month) and return
+      respond_to do |format|
+        format.html { redirect_to monthly_calendar_path(@event.year, @event.month) and return }
+        format.json { render nothing: true and return}
+      end
     end
     flash.now[:alert] = t :error_occurred_processing_last_request
     render :edit
