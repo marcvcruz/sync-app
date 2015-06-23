@@ -5,7 +5,7 @@ module AngularValidation
 
     def check_box(method, options = {}, checked_value="1", unchecked_value="0")
       add_options method, options
-      init_model_value @object.send(method), options
+      init_model_value @object.send(method), options if @object.present?
       super
     end
 
@@ -82,7 +82,8 @@ module AngularValidation
 
     def add_validation_attributes(attribute, options)
       validators = []
-      validators.concat(@object.class.validators_on(attribute)) unless @object.nil?
+      klass = @object.present? ? @object.class : Object.const_get(@object_name.to_s.camelcase) rescue nil
+      validators.concat(klass.validators_on(attribute)) unless klass.nil?
       validators.each do |validator|
         next if skip_validation?(@object, validator.options)
 

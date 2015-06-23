@@ -6,7 +6,8 @@ module ActionView
   module Helpers
     class FormBuilder
       def ng_messages(attribute, field_options={})
-        field_options[:validators] = @object.class.validators_on(attribute)
+        klass = @object.present? ? @object.class : Object.const_get(@object_name.to_s.camelcase) rescue nil
+        field_options[:validators] = klass.validators_on(attribute) unless klass.nil?
         field_options[:form_name] = @options[:form_name]
         Tags::NgMessages.new(@object_name, attribute, self, field_options).render
       end

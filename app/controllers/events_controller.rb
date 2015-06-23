@@ -57,7 +57,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:description, :is_all_day, :starting_on, :starting_at, :notes)
+    params.require(:eventForm).transform_keys { |k| k.to_s.underscore.to_sym }.permit(:description, :is_all_day, :starting_on, :starting_at, :notes)
   end
 
   def get_event

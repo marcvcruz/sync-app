@@ -18,13 +18,16 @@ table.calendar-body {
   tbody {
     tr {
       td {
-        @media (max-width: $screen-sm-min) {
+        @media (max-width: $screen-sm-min) {  // max-width: 768px
           height: 52px;
+          .call-to-action {
+            display: none;
+          }
           .event {
             display: none;
           }
         }
-        @media (min-width: $screen-sm-min) {
+        @media (min-width: $screen-sm-min) {  // min-width: 768px
           width: 102px;
           height: 90px;
 
@@ -32,7 +35,7 @@ table.calendar-body {
             height: 70px;
           }
         }
-        @media (min-width: $screen-md-min) {
+        @media (min-width: $screen-md-min) {  // min-width: 992px
           width: 133px;
           height: 95px;
 
@@ -40,7 +43,7 @@ table.calendar-body {
             height: 75px;
           }
         }
-        @media (min-width: $screen-lg-min) {
+        @media (min-width: $screen-lg-min) {  // min-width: 1200px
           width: 160px;
           height: 135px;
 
@@ -64,13 +67,23 @@ table.calendar-body {
             width: inherit;
             height: inherit;
 
-            > a { color: black; }
-            .calendar-day {
-              width: inherit;
+            .calendar-day {  width: inherit;
               height: inherit;
               overflow: hidden;
               text-overflow: clip;
               white-space: nowrap;
+
+              .call-to-action {
+                float: left;
+                margin: 6px 4px 9px 8px;
+                line-height: 1.0;
+                position: relative;
+                top: -25px;
+
+                a {
+                  color: black;
+                }
+              }
 
               .date-label {
                 font-weight: bold;
@@ -113,7 +126,6 @@ table.calendar-body {
                 }
               }
             }
-
           }
         }
       }
