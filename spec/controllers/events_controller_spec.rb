@@ -42,6 +42,17 @@ RSpec.describe EventsController, type: :controller do
       expect(assigns(:event).new_record?).to be true
       expect(response).to render_template :new
     end
+
+    context 'with a starting_date parameter' do
+      let(:starting_date) {
+        Date.parse('2016-10-10')
+      }
+
+      it 'sets the parameter as the new event\'s starting date' do
+        get :new, starting_date: starting_date
+        expect(assigns(:event).starting_date_time).to eql(starting_date.to_time)
+      end
+    end
   end
 
   describe 'POST #create' do
