@@ -67,7 +67,8 @@ table.calendar-body {
             width: inherit;
             height: inherit;
 
-            .calendar-day {  width: inherit;
+            .calendar-day {
+              width: inherit;
               height: inherit;
               overflow: hidden;
               text-overflow: clip;
@@ -95,6 +96,7 @@ table.calendar-body {
               .event {
                 font-size: 13px;
                 margin: 6px 2px;
+                padding: 2px 0;
                 text-align: start;
                 line-height: 1;
                 clear: both;

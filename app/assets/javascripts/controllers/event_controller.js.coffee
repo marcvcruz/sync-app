@@ -1,35 +1,25 @@
-angular.module('SyncApp').controller 'EventController', ['$scope', '$http', ($scope, $http) ->
+angular.module('SyncApp').controller 'EventController', ['$rootScope', '$scope', '$http', 'eventService', ($rootScope, $scope, $http, eventService) ->
 
-  eventModal = angular.element('#event_form.modal')
+  $scope.init = ->
+    $rootScope.$on 'syncApp.editEvent', ($e, eventSummary) ->
+      eventService.getEvent(eventSummary.id).then( (response) ->
+        $scope.eventSummary = eventSummary
+        $scope.event = response.data
+        angular.element('#event_form').modal('show')
+      )
 
-  $scope.newEvent = ->
-    angular.extend $scope,
-      action: 'POST'
-      actionUrl: '/events/new'
-      event: {}
-    eventModal.modal('show')
-
-  $scope.editEvent = (event) ->
-    $http.get "/calendar/#{year}/#{month}.json",
-      headers: 'Accept': 'application/json'
-    .success (data) ->
-      $scope.events = data
-    .error (e) ->
-      console.log 'An error occured.'
+    $rootScope.$on 'syncApp.createEvent', ->
+      $scope.event = {}
+      angular.element('#event_form').modal('show')
 
   $scope.submit = (e) ->
     e.preventDefault()
-
-    $http
-      headers: 'Accept': 'application/json'
-      method: $scope.action
-      url: $scope.actionUrl
-      data: { eventForm: $scope.event }
-    .error (e) ->
-      console.log 'An error occured'
-    .finally (e) ->
-      eventModal.modal('hide')
+    eventService.saveEvent($scope.event).then( ->
+      angular.element('#event_form').modal('hide')
+      $rootScope.$broadcast 'syncApp.eventsChanged', { oldValue: $scope.eventSummary, newValue: $scope.event }
       $scope.event = undefined
-      $scope.action = ''
-      $scope.actionUrl = ''
+      $scope.eventSummary = undefined
+      angular.element('#event_form').modal('hide')
+
+    )
 ]

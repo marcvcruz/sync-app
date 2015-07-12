@@ -16,11 +16,14 @@ class EventsController < ApplicationController
   def create
     @event = Event.new event_params.merge!(organizer_id: current_user.id)
     if @event.valid? and @event.save
-      flash[:notice] = t :event_successfully_created
-      redirect_to :events and return
+      respond_to do |format|
+        format.json { render json: { status: :success, root: false } and return }
+      end
     end
-    flash.now[:alert] = t :error_occurred_processing_last_request
-    render :new
+
+    respond_to do |format|
+      format.json { render json: { status: :error, message: t(:error_occurred_processing_last_request), root: false } and return }
+    end
   end
 
   def edit
@@ -32,14 +35,17 @@ class EventsController < ApplicationController
 
   def update
     if @event.update_attributes event_params
-      flash[:notice] = t :event_successfully_updated
       respond_to do |format|
-        format.html { redirect_to monthly_calendar_path(@event.year, @event.month) and return }
-        format.json { render nothing: true and return}
+        format.html {
+          flash[:notice] = t :event_successfully_updated
+          redirect_to monthly_calendar_path(@event.year, @event.month)
+        }
+        format.json { render nothing: true }
       end
+    else
+      flash.now[:alert] = t :error_occurred_processing_last_request
+      render :edit
     end
-    flash.now[:alert] = t :error_occurred_processing_last_request
-    render :edit
   end
 
   def destroy

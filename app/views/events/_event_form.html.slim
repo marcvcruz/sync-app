@@ -1,5 +1,5 @@
-div ng-controller='EventController'
-  =form_for :event, as: 'eventForm', url: '{{ actionUrl }}' , builder: AngularValidation::FormBuilder  do |f|
+div ng-controller='EventController' ng-init="init()"
+  =form_for :event, as: 'eventForm', url: '{{ actionUrl }}' , builder: AngularValidation::FormBuilder , html: { 'ng-submit' => 'submit($event)' } do |f|
     .form-group
       =f.label :description
       =f.text_field :description, class: 'form-control', placeholder: t(:enter_a_description)
@@ -31,4 +31,4 @@ div ng-controller='EventController'
       =f.text_area :notes, class: 'form-control', rows: 3, placeholder: t(:enter_event_notes)
       =f.ng_messages :notes
 
-    =f.button type: :submit, :class => 'btn btn-success', 'ng-disabled' => '$submitted', 'ng-click' => 'submit($event)'
+    =f.button type: :submit, :class => 'btn btn-success', 'ng-disabled' => '$submitted'

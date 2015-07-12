@@ -1,31 +1,30 @@
-#monthly_event_calendar ng-controller='MonthlyCalendarController' ng-init="init(#{start_date.month}, #{start_date.year})" ng-cloak=''
-  =month_calendar start_date: start_date, previous_link: previous_link, next_link: next_link, td: td_options, table: table_options do |date|
-    section.summary ng-mouseenter="showCallToAction = true" ng-mouseleave="showCallToAction = false"
-      .calendar-day
-        section.call-to-action ng-show="showCallToAction" ng-animate=" 'call-to-action' "
-          a.create-event ng-click='newEvent()'
-            span.glyphicon.glyphicon-plus aria-hidden='true'
-        .date-label
-          span
-            =date.strftime('%e')
-        section.events
-          .event ng-class="{'all-day': event.isAllDay }" ng-repeat="event in events | filter:eventsOn('#{date}')"
-            a.update-event ng-click='editEvent(event)'
-              .start-time ng-if="!event.isAllDay"
-                span
-                  '{{ event.startingAt }}
-              .description
-                '{{ event.description }}
+=month_calendar start_date: start_date, previous_link: previous_link, next_link: next_link, table: table_options do |date|
+  section.summary ng-mouseenter="showCallToAction = true" ng-mouseleave="showCallToAction = false"
+    .calendar-day
+      section.call-to-action ng-show="showCallToAction" ng-animate=" 'call-to-action' "
+        a.create-event ng-click='showEventDetails()'
+          span.glyphicon.glyphicon-plus aria-hidden='true'
+      .date-label
+        span
+          =date.strftime('%e')
+      section.events
+        .event ng-class="{'all-day': item.isAllDay }" ng-repeat="item in events | filter: eventsOn('#{date}')"
+          a.update-event ng-click='editEvent(item)'
+            .start-time ng-if="!item.isAllDay"
+              span
+                '{{ item.startingAt }}
+            .description
+              '{{ item.description }}
 
-  #event_form.modal.fade
-    .modal-dialog
-      .modal-content
-        .modal-header
-          button.close type='button' data-dismiss='modal' aria-label='Close'
-            span.glyphicon.glyphicon-remove-sign aria-hidden='true'
-          h1 ng-if="event.id == undefined"
-            =t :new_event
-          h1 ng-if="event.id != undefined"
-            =t :update_event
-        .modal-body
-          =render partial: 'events/event_form'
+#event_form.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type='button' data-dismiss='modal' aria-label='Close'
+          span.glyphicon.glyphicon-remove-sign aria-hidden='true'
+        h1 ng-if="event.id == undefined"
+          =t :new_event
+        h1 ng-if="event.id != undefined"
+          =t :update_event
+      .modal-body
+        =render partial: 'events/event_form'
