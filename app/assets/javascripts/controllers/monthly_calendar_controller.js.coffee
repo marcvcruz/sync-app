@@ -4,12 +4,13 @@ angular.module('SyncApp').controller 'MonthlyCalendarController', ['$rootScope',
 
   $scope.init = (year, month) ->
     $rootScope.$on('syncApp.eventsChanged', ($e, params) ->
-      $scope.events.add(params.newValue) unless params.oldValue?
-      if moment(params.oldValue.startingOn).isSame(params.newValue.startingOn)
-        angular.extend(params.oldValue, params.newValue)
+      if params.oldValue is undefined
+        $scope.events.push params.newValue
+      else if moment(params.oldValue.startingOn).isSame(params.newValue.startingOn)
+        angular.extend params.oldValue, params.newValue
       else
         index = $scope.events.indexOf params.oldValue
-        $scope.events.splice(index, 1)
+        $scope.events.splice index, 1
         $scope.events.push params.newValue
     )
     $scope.getEvents(year, month)
@@ -22,6 +23,9 @@ angular.module('SyncApp').controller 'MonthlyCalendarController', ['$rootScope',
   $scope.eventsOn = (date) ->
     (event) ->
       moment(event.startingOn).isSame(date)
+
+  $scope.createEvent = (date) ->
+    $rootScope.$broadcast 'syncApp.createEvent', $scope.selectableDate
 
   $scope.editEvent = (event)->
     $rootScope.$broadcast 'syncApp.editEvent', event
