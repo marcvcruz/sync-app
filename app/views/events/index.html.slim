@@ -1,8 +1,8 @@
 =month_calendar start_date: start_date, previous_link: previous_link, next_link: next_link, table: table_options do |date|
-  section.summary ng-mouseenter="showCallToAction = true" ng-mouseleave="showCallToAction = false"
+  section.summary ng-mouseover="selectableDate = '#{date}'" ng-mouseleave="selectableDate = nil"
     .calendar-day
-      section.call-to-action ng-show="showCallToAction" ng-animate=" 'call-to-action' "
-        a.create-event ng-click='showEventDetails()'
+      section.call-to-action ng-show="selectableDate == '#{date}'"
+        a.create-event ng-click='createEvent(date)'
           span.glyphicon.glyphicon-plus aria-hidden='true'
       .date-label
         span
