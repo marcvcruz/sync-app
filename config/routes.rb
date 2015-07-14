@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'calendar#show'
+  root 'events#index'
 
   match '/forgot-password' => 'password_resets#new', via: :get, as: :new_password_reset
   match '/forgot-password' => 'password_resets#create', via: :post, as: :create_password_reset
@@ -12,10 +12,11 @@ Rails.application.routes.draw do
   match '/sign-in' => 'session#create', via: :post, as: :authenticate
   match '/sign-out' => 'session#destroy', via: :get, as: :sign_out
 
-  match '/calendar' => 'calendar#show', via: :get, as: :calendar
-
   match '/api/username-uniqueness' => 'api#username_uniqueness', via: :get
 
   resources :users
   resources :events
+  match '/calendar(/:year/:month)' => 'events#index', via: :get, as: :monthly_calendar
+
+
 end

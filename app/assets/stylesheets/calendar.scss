@@ -18,23 +18,52 @@ table.calendar-body {
   tbody {
     tr {
       td {
-        @media (max-width: $screen-sm-min) {
+        @media (max-width: $screen-sm-min) {  // max-width: 768px
           height: 52px;
+          .call-to-action {
+            display: none;
+          }
           .event {
             display: none;
           }
         }
-        @media (min-width: $screen-sm-min) {
+        @media (min-width: $screen-sm-min) {  // min-width: 768px
           width: 102px;
           height: 90px;
+
+          .call-to-action {
+            -webkit-transition: top 0.50s cubic-bezier(.45,-1.67,.53,2.00) 0.15s;
+            transition: top 0.50s cubic-bezier(.45,-1.67,.53,2.00) 0.15s;
+            top: 0;
+
+            &.ng-hide {
+              top: -25px;
+            }
+
+            &.ng-hide-remove {
+              display: block !important;
+            }
+          }
+
+          .events {
+            height: 70px;
+          }
         }
-        @media (min-width: $screen-md-min) {
+        @media (min-width: $screen-md-min) {  // min-width: 992px
           width: 133px;
           height: 95px;
+
+          .events {
+            height: 75px;
+          }
         }
-        @media (min-width: $screen-lg-min) {
+        @media (min-width: $screen-lg-min) {  // min-width: 1200px
           width: 160px;
-          height: 120px;
+          height: 135px;
+
+          .events {
+            height: 115px;
+          }
         }
 
         &.prev-month, &.next-month {
@@ -48,39 +77,61 @@ table.calendar-body {
         &.day {
           padding: 0;
 
-          .calendar-day {
+          .summary {
             width: inherit;
+            height: inherit;
 
-            .date-label {
-              font-weight: bold;
-              float: right;
-              margin-bottom: 2px;
-              margin-right: 4px;
-            }
+            .calendar-day {
+              width: inherit;
+              height: inherit;
+              overflow: hidden;
+              text-overflow: clip;
+              white-space: nowrap;
 
-            .event {
-              font-size: 13px;
-              margin: 5px;
-              text-align: start;
-              clear: both;
-              @include ellipsis;
+              .call-to-action {
+                float: left;
+                margin: 4px 4px 0px 8px;
+                line-height: 1.0;
+                position: relative;
 
-              &.all-day {
-                margin: 5px auto;
-                text-align: center;
+                a {
+                  color: black;
+                }
               }
 
-              a {
-                color: black;
+              .date-label {
+                font-weight: bold;
+                float: right;
+                margin: 4px 4px 0px 4px;
+                line-height: 1.0;
+              }
 
-                &:hover {
-                  text-decoration: none;
+              .event {
+                font-size: 13px;
+                margin: 0px 2px;
+                padding: 2px 0;
+                text-align: start;
+                line-height: 1;
+                clear: both;
+                @include ellipsis;
+
+                &.all-day {
+                  text-align: center;
+                }
+
+                a {
+                  color: black;
+
+                  &:hover {
+                    text-decoration: none;
+                  }
                 }
 
                 .start-time {
                   display: inline-block;
                   font-weight: 500;
-
+                  width: 58px;
+                  text-align: right;
                 }
 
                 .description {

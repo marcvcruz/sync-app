@@ -47,4 +47,14 @@ RSpec.describe Event, type: :model do
       end
     end
   end
+
+  it 'can find events occurring on a given month' do
+    FactoryGirl.create :event, description: 'An event two days ago', starting_date_time: 2.days.ago
+    FactoryGirl.create :event, description: 'An event next month', starting_date_time: 1.month.from_now
+    FactoryGirl.create :event, description: 'Latest event this month', starting_date_time: Time.now.end_of_month.end_of_day
+    FactoryGirl.create :event, description: 'Earliest event this month', starting_date_time: Time.now.beginning_of_month.beginning_of_day
+
+    events = Event.occurs_in Time.now
+    expect(events.size).to eql(3)
+  end
 end

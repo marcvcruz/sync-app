@@ -2,15 +2,15 @@ html
   head
     title SYNC
     =stylesheet_link_tag    'application', media: 'all'
-    =javascript_include_tag 'application'
-    csrf_meta_tags
+    =csrf_meta_tags
     meta name="viewport" content="width=device-width, initial-scale=1"
   body
     .header
       =render 'layouts/header'
-    .main-body.container ng-app='SyncApp'
+    .main-body.container ng-app='SyncApp' ng-cloak=''
       -unless flash.empty?
         -flash.each do |key,value|
           div class="#{key}"
             =value
       =yield
+    =javascript_include_tag 'application'

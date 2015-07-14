@@ -8,6 +8,14 @@ h1 {
   margin: 20px 0;
 }
 
+a {
+  cursor: pointer;
+}
+
+a:focus {
+  outline: none;
+}
+
 form {
   margin: 15px 0;
 
@@ -29,7 +37,7 @@ form {
   }
 
   input[type=submit] {
-    margin: 20px 0px;
+    margin: 10px 0px;
   }
 
   ng-messages.ng-active {
@@ -53,6 +61,7 @@ input:-moz-placeholder      { font-style: italic }
   padding: 0.83333em;
   border-radius: 4px;
 }
+
 .alert {
   border: 1px solid #ff3f3f;
   background-color: #fff5f5;
@@ -63,4 +72,9 @@ input:-moz-placeholder      { font-style: italic }
   border: 1px solid #4c4cff;
   background-color: #e5e5ff;
   @include notification
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak],
+[x-ng-cloak],.ng-cloak, .x-ng-cloak, .ng-hide {
+  display: none !important;
 }

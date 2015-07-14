@@ -1,15 +1,37 @@
-#starting_date_time {
-  .form-inline {
-    #start_date_container, #start_time_container {
-      display: inline-block;
-      vertical-align: top;
+table.events {
+  .event {
+    .description {
+      width: 450px;
+    }
+  }
+}
 
-      input {
-        width: 135px;
-      }
+.modal-header {
+  border: none;
+  padding: 15px 15px 0 15px;
 
-      ng-messages {
-        display: block;
+  h1 {
+    margin: 0 15px;
+  }
+}
+
+.modal-body {
+  margin: 0 15px;
+
+  form[name=eventForm] {
+    margin: 0;
+    #starting_date_time {
+      #start_date_container, #start_time_container {
+        display: inline-block;
+        vertical-align: top;
+
+        input {
+          width: 135px;
+        }
+
+        ng-messages {
+          display: block;
+        }
       }
     }
   }
